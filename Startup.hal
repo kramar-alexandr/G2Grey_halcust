@@ -43,7 +43,8 @@ begin
 	Maintenance("Обнулити статус підтвердження Ком.Проп.",ClearAccQTVClass,ClearAccQTMn,modTC);// Edit ************************** Tuesday, 15 January 2013 10:45:30
 	
 	Maintenance("Нормалізувати підписи QT",NormalizeQTAuthorityVClass,NormalizeQTAuthorityVClassMn,modTC);// Edit ************************** Monday, 11 February 2013 13:31:33
-	
+  Maintenance("Update TimeSheet from TimeTracker",UpdateTSVClass,TimeTrackerTSRequestMn,modTS); //***** Edit by Victor 19.08
+
 	Setting("POItem",POItemLClass,modPO);
 	Maintenance("Update TS",UpdTSVClass,UpdTSMn,modTC);
 	Maintenance("Update QT",UpdQTVClass,UpdQTMn,modTC);
