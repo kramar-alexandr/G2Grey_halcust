@@ -1,4 +1,5 @@
 external procedure SaveHistory(string, string, string, string, string);
+external inner procedure DblRHist(string,string,integer);
 
 global updating
 Procedure CUVcHistory(record CUVc CUr,record CUVc CU2r)
@@ -28,3 +29,49 @@ if Cur.VATNr<>CU2r.VATNr then begin  SaveHistory("CUVc",Cur.Code,"VATNr",CU2r.VA
 
 return;
 end;
+
+
+
+/*global updating procedure UpdateCUItemHistMn()
+begin
+record CUVc CUr,CU2r; 
+record RHistVc RHist2r;
+string 200 tstr;
+boolean testf,TrHs;	
+Boolean Accs;
+area a_blob;
+integer rwcnt,i;
+record PageSetupVc PGr;
+	
+	RHist2r.SerNr = 999999999;
+	readlastmain(RHist2r,1,false);
+	GetRecordBlob(RHist2r,"Math",a_blob);
+	//addrecordtoarea(PGr,"PageSetupVc",a_blob);
+	writeareatofile(a_blob,"1.txt",1);
+	
+	while(loopmain(CUr,1,true))begin
+		tstr = BuildRecordIdStr(CUr,currentcompany);
+		Accs = true;
+		RHist2r.RecidStr = tstr;
+		while(loopkey("RecidStr",RHist2r,1,Accs))begin
+			if(RHist2r.RecidStr!=tstr)then begin Accs=false; end;
+			
+			if(RHist2r.TransDate>stringtodate("1/1/2015"))then begin
+				
+				if(BlobSize(RHist2r)>0)then begin
+					setareazerosize(a_blob);
+				//Addrecordtoarea(RHist2r,"RHistVc",a_blob);
+					GetRecordBlob(RHist2r,"Math",a_blob);
+					writeareatofile(a_blob,"1.txt",1);
+									
+					
+					//GetRecordBlob(RHist2r,"Math",a_blob); 
+					//Getrecordfromarea(CU2r,"CUVc",0,a_blob);
+				end;
+			end;
+		end;
+		resetloop(RHist2r);
+	end;
+
+return;
+end;*/

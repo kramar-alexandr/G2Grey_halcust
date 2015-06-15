@@ -105,7 +105,7 @@ begin
 	string 255 tstr,temp;
 	array string 255 res;
 	
-	
+	messagebox(0,1);
 	Cur.Code = OPRw.VECode;
 	if (ReadFirstMain(CUr,1,true)) then begin end;
 	BNr.Code = CUr.AccOperator;

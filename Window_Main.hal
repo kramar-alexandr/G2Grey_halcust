@@ -659,7 +659,7 @@ SpecialMenu("Статус товару",'I',1,"ItemStatusQTDsm");
   MatText(2,154," ",true);
   Flip(1);
   MatCol(1,h1=140,"Проект",0,PRCode,false,PRTSTSSClass);// 62
-  MatCol(1,h1+=90,"Код",0,ArtCode,false,sav_INSClass);// 62
+  //MatCol(1,h1+=90,"Код",0,ArtCode,false,sav_INSClass);// 62// Edit ************************** Friday, 20 March 2015 17:22:07
   MatCol(1,h1+=80,"Кіл-ть",0,Qty,true,0);
   MatText(2,24,"Підпис",true);
   MatCol(2,104,"-1",0,EMCode,false,0);
