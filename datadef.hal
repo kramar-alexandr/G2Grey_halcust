@@ -3855,7 +3855,8 @@ begin
   ArrayField(Quant,M4UVal,0,0);
   ArrayField(Price,M423Val,0,0);
   ArrayField(Sum,M4Val,0,0);
-  ArrayField(vRebate,M41Val,0,0);
+  //ArrayField(vRebate,M41Val,0,0);Changed
+  ArrayField(vRebate,M4Val,0,0);// Edit ************************** Tuesday, 9 February 2016 10:51:13
   ArrayField(PriceFactor,M45Val,0,0);
   ArrayField(FIFORowVal,M45Val,0,0);
   ArrayField(BasePrice,M4Val,0,0);
