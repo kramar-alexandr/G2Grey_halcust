@@ -682,3 +682,16 @@ begin
 	
 return;
 end;
+
+global updating procedure UnOkSD160008Mn(record RcVc RepSpec)
+begin
+	record SDVc SDr;
+	
+	SDr.SerNr = 160008;
+	if(readfirstmain(SDr,1,true))then begin
+		SDr.OKFlag = 0;
+		recordstore(SDr,true);
+	end;
+	
+return;
+end;

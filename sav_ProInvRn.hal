@@ -314,6 +314,55 @@ L99:;
 return;
 end;
 
+procedure PrintIVrPayments(longint SerNr, date InvDate)
+begin
+  record IPVc IPr;
+  row IPVc iPRw;
+  Boolean found;
+  Boolean prf;
+  val totinv, totinv2,open,open2;  
+  boolean testf;
+  integer i,k;
+ SetLangMode(LangUkrainian,"UKR",0);
+  found = true;
+  prf = false;
+  IPr.TransDate = InvDate;
+  while (LoopKey("TransDate",IPr,1,found)) begin
+  testf = true;
+	if (IPr.TransDate<InvDate) then begin testf=false; end;
+   if (IPr.OKFlag==0) then begin testf=false; end;
+	if (testf) then begin
+		for (i=0;i<matrowcnt(IPr);i=i+1) begin
+			matrowget(IPr,i,IPrw);
+			if (IPrw.InvoiceNr == SerNr) then begin
+				if (prf==false) then begin
+					StartFormat(15);
+		        	OutString(80,0,USetStr(15999) & " по акту",false); // платеж
+					OutString(170,0,USetStr(6763),false); // дата
+					OutString(270,0,USetStr(7258),true); // суми з ПДВ
+					EndFormat;
+					prf = true;
+		      end;
+				StartFormat(15);
+				OutString(80,"dblIPVc",IPr.SerNr,false); // платеж
+				OutString(170,0,IPr.TransDate,false); // дата
+				OutString(270,0,IPrw.RecVal,true); // суми з ПДВ
+				totinv = totinv + IPrw.RecVal;
+				EndFormat;
+			end;
+		end;
+	end;
+  end;
+  if totinv>0 then begin
+		Gray_Divider(0,1);
+	   StartFormat(15);
+	   OutString(80,0,USetStr(6803),false);
+	   OutVal(270,0,totinv,M4Val,true);
+	   EndFormat;
+  end;
+  return;
+end;
+
 procedure PrintProjectInvoices(string prcode)
 begin
   record IVVc IVr;
@@ -370,6 +419,7 @@ begin
       end;
       open = open + ARr.RVal;
       EndFormat;
+      PrintIVrPayments(IVr.SerNr,IVr.InvDate);// Edit ************************** Thursday, 18 August 2016 17:19:34
     end;
   end;
 	if (totinv>0) or (totinv2>0) or (open>0) then begin //62

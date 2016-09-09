@@ -38,6 +38,8 @@ begin
 	Maintenance("Відкрити SD",UnResPOVClass,UnResPOMn,modIN);
 	Maintenance("Відкрити SH",UnResPOVClass,UnResSHMn,modIN);
 	
+	Maintenance("UnOk SD 160008",UpdateTSVClass,UnOkSD160008Mn,modIN);
+	
 	Maintenance("DelPRVc",PRVcClearVClass,dellPRVcMn,modTC);// Edit ************************** Friday, 30 November 2012 11:31:52
 	Maintenance("Обнулити статус підтвердження Зам.Пост.",ClearAccPOVClass,ClearAccPOMn,modTC);// Edit ************************** Tuesday, 15 January 2013 10:45:27
 	Maintenance("Обнулити статус підтвердження Ком.Проп.",ClearAccQTVClass,ClearAccQTMn,modTC);// Edit ************************** Tuesday, 15 January 2013 10:45:30
