@@ -81,6 +81,9 @@ begin
 	Setting("Коди податкових кредитів",VICredRowsLClass,modPL);
 	Setting("Коди податкових забов'язань",IVDebRowsLClass,modSL);
 	
+	Module("СМС повідомлення","",730,modSMS);//Edit-------------------Vitalii 11:39 25.03.2016
+  Setting("Налаштування СМС",SMSConfigTClass,modSMS);
+	
   SetBegin(461);//SAV 2011_12_20 from 6.3
   SetText(kVIRateFromPurchaseOrder,"From Purchase Order");
   SetText(kVIRateOnPurchaseInvoiceDate,"On Purchase Invoice Date");
