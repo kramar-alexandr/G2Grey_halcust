@@ -4017,4 +4017,57 @@ begin
     RecordField(Sign,M4Str,255,0);
 	EndBlock;
 	
+	RecordBegin(AccessRecHistoryVc,-,"");
+		RecordField(SerNr,M4Long,0,0);
+		RecordField(Code,M4Code,20,0);
+		RecordField(User,M4Code,20,0);
+		RecordField(Type,M4Code,20,0);
+		RecordField(TransDate,M4Date,0,0);
+		RecordField(TransTime,M4Time,0,0);
+		RecordField(OldComment,M4Str,60,0);
+		RecordField(NewComment,M4Str,60,0);
+		RecordField(OldBlockAccs,M4Str,255,0);
+		RecordField(NewBlockAccs,M4Str,255,0);
+		RecordField(OldAccessGroup,M4UStr,100,AccessVc);
+		RecordField(NewAccessGroup,M4UStr,100,AccessVc);
+		
+		RecordField(Math,M4Matrix,0,0);
+		ArrayBegin(Math,-,1);
+		ArrayField(Addflag,M4Int,0,0);
+		
+		ArrayField(OldAccType,M4Int,0,0);
+		ArrayField(OldAccName,M4Str,100,0);
+		ArrayField(OldAccLevel,M4Int,0,0);
+		ArrayField(OldOpenType,M4Int,0,0);
+		
+		ArrayField(NewAccType,M4Int,0,0);
+		ArrayField(NewAccName,M4Str,100,0);
+		ArrayField(NewAccLevel,M4Int,0,0);
+		ArrayField(NewOpenType,M4Int,0,0);
+		
+		EndArray;
+		
+		MainKeyBegin(SerNr,0);
+		KeySegment(SerNr);
+		KeyBegin(Code);
+		KeySegment(Code);
+		KeySegment(SerNr);
+		KeyBegin(CodeDate);
+		KeySegment(Code);
+		KeySegment(TransDate);
+		KeySegment(TransTime);
+		KeySegment(SerNr);
+		KeyBegin(User);
+		KeySegment(User);
+		KeySegment(TransDate);
+		KeySegment(TransTime);
+		KeySegment(SerNr);
+		KeyBegin(DateCode);
+		KeySegment(TransDate);
+		KeySegment(TransTime);
+		KeySegment(Code);
+		KeySegment(SerNr);
+  EndRecord;
+	
+	
 end;

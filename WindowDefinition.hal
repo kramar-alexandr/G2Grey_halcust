@@ -1408,7 +1408,7 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
 
   WindowBegin("Налаштування СМС",SMSConfigTClass,CGSbl,-);// Edit ************************** Monday, 13 February 2017 15:20:01
   SetBlid(SMSConfigBlock);
-  SetWRect(64,80,500,300);
+  SetWRect(64,80,900,600);
   v=6;vs = 20; h = 120;
  	EditField(h,v,200,"Логін",Normal,Login,false,0);
   EditField(h,v+=vs,200,"Пароль",Normal,Password,false,0);
@@ -1420,6 +1420,62 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   EditField(h,v+=vs,200,"Остання помилка",Normal,LastErr,false,0);
   EditField(h,v+=vs,80,"Дата помилки",Normal,LEDate,false,0);
   EditField(h+120,v,80,"Час",Normal,LETime,false,0);
+  EndWindow;
+	
+	WindowBegin("Access Group History",AccessRecHistoryDClass,CGview,-);
+  SetWRect(1,1,800,100);
+  Sizeable(-1,-1,0,0);
+  UseView(AccessRecHistoryVc);
+  v=6;vs = 20; h = 120;
+  EditField(h,v,50,"Code",ViewOnly,Code,false,0);
+  EditField(h+100,v,50,"User",ViewOnly,User,false,0);
+  EditField(h+200,v,50,"Date",ViewOnly,TransDate,false,0);
+  EditField(h+300,v,50,"Time",ViewOnly,TransTime,false,0);
+  EditField(h+400,v,50,"Type",ViewOnly,Type,false,0);
+  EditField(h,v+=vs,150,"Old Comment",Normal,OldComment,false,0);
+  EditField(h+250,v,150,"New Comment",Normal,NewComment,false,0);
+  
+  EditField(h,v+=vs,150,"Old BlockAccs",Normal,OldBlockAccs,false,0);
+  EditField(h+250,v,150,"New BlockAccs",Normal,NewBlockAccs,false,0);
+  
+  EditField(h,v+=vs,150,"Old AccessGroup",Normal,OldAccessGroup,false,0);
+  EditField(h+250,v,150,"New AccessGroup",Normal,NewAccessGroup,false,0);
+  v = v + vs + vs;
+  vs = 60;
+  h=vs;
+  MatrixBegin(15,v,-20,-20,Math,99);
+  	MatCol(1,h,"Chane Type",0,Addflag,false,0);
+  	
+		MatCol(1,h+=vs,"OldAccType",0,OldAccType,false,0);
+		MatCol(1,h+=vs,"NewAccType",0,NewAccType,false,0);
+	
+		MatCol(1,h+=vs,"OldAccName",0,OldAccName,false,0);
+		MatCol(1,h+=vs,"NewAccName",0,NewAccName,false,0);
+	
+		MatCol(1,h+=vs,"OldAccLevel",0,OldAccLevel,false,0);
+		MatCol(1,h+=vs,"NewAccLevel",0,NewAccLevel,false,0);
+	
+		MatCol(1,h+=vs,"OldOpenType",0,OldOpenType,false,0);
+		MatCol(1,h+=vs,"NewOpenType",0,NewOpenType,false,0);
+
+	EndMatrix;
+  
+  SearchField("Пошук");
+  EndWindow;
+	
+	WindowBegin("Access Group History",AccessRecHistoryLClass,CGmlist,-);
+  SetWRect(64,80,650,298);
+  Sizeable(-1,-1,0,0);
+  SpawnClass(AccessRecHistoryDClass);
+  UseView(AccessRecHistoryVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,2,"#",SerNr,false,SerNr);
+  RlColKey(50,2,"Access Group",Code,false,Code);
+  RlColKey(150,2,"User",User,false,UserDate);
+  RlCol(200,2,"Type",Type,false);
+  RlColKey(-140,2,"Date",TransDate,false,DateCode);
+  RlCol(-70,2,"Time",TransTime,false);
+  SearchField("Пошук");
   EndWindow;
 	
 return;
