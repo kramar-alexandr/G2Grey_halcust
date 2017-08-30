@@ -23,6 +23,8 @@ begin
 	SString(31013,"Зам.пост."); 
 	SString(31014,"Ком.проп.");
 	SString(31015,"Пост.:"); 
+	SString(31016,"Проект має бути в статусі Активно"); 
+	SString(31017,"Проект має бути у Рівні 1");
 	
 	Setting("PErsVc",PErsLClass,modTC);
 	Setting("RHist",RHistLClass,modSY);
