@@ -30,7 +30,7 @@ begin
 	Setting("RHist",RHistLClass,modSY);
 	Setting("Access Groups History",AccessRecHistoryLClass,modSY);
 	Report("Табелі часу",TSReportRClass,TSReportRn,0,modTS);
-	Report("Ісотрія зміни груп доступа",AccessHistRClass,AccessHistRn,0,modSY);// Edit ************************** Thursday, 31 August 2017 10:19:01
+	Report("Історія зміни груп доступа",AccessHistRClass,AccessHistRn,0,modSY);// Edit ************************** Thursday, 31 August 2017 10:19:01
 	Report("Відомість по проектам",krProjectInfoRClass,krProjectInfoRn,0,modTS);// Edit ************************** Monday, 3 December 2012 10:52:37
 	Report("Реєстр отриманих податкових накладних (новий)",VATVIRegUkrRClass,VATVIRegUkrNewRn,0,modPL);// Edit ************************** Wednesday, 31 July 2013 16:34:15
 	Report("Реєстр податкових накладних виданих (новий)",VATIVRegUkrRClass,VATIVRegUkrNewRn,0,modSL);// Edit ************************** Monday, 23 September 2013 15:31:38
