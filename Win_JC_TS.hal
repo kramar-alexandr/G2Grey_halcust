@@ -1022,6 +1022,12 @@ EditField(h2,v,100,"Ћриг. клґ№нт",Normal,OrgCust,false,AllCUSClass);
 		EditFieldTL(h,v+=vs, 150,"Љлґ№нт",M4UStr,Normal,30,f3,false,CUSClass);
 	EndWindow;
 	
+	WindowBegin("‚изначте звґт по ґсторґ» змґни ѓруп доступу",AccessHistRClass,CGRcW,RcType);
+		SetWRect(20,80,400,200);
+		v = 6; vs = 20; h = 120;
+		PeriodField(h,v+=vs,"Џерґод");
+	EndWindow;
+	
 	WindowBegin("Clear PRVc",PRVcClearVClass,CGMnt,RcType);
   SetWRect(20,80,450,208);
 
