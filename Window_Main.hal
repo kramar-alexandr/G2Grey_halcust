@@ -1228,6 +1228,11 @@ SpecialMenu("Статус товару",'I',1,"ItemStatusQTDsm");
 	
 	// Edit End ---------------------------------------------- Edit End
 	
+	WindowBegin("Визначте звіт по історії зміни Груп доступу",AccessHistRClass,CGRcW,RcType);
+		SetWRect(20,80,400,200);
+		v = 6; vs = 20; h = 120;
+		PeriodField(h,v+=vs,"Період");
+	EndWindow;
 	
 return;
 end;
