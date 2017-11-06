@@ -3521,6 +3521,7 @@ begin
   ArrayField(BaseRate1BankVal,M4Rate,0,0); 
   ArrayField(BaseRate2BankVal,M4Rate,0,0); 
   ArrayField(KBExportNum,M4Long,0,0);  // SAV 2011_09_21 Добавлено для хранения номеров выгрузок платёжек в клиент-банк
+  ArrayField(VEName,M4Str,255,0);// Edit ************************** Friday, 3 November 2017 17:14:22
   EndArray;
   MainKeyBegin(SerNr,0);
   KeySegment(SerNr);
