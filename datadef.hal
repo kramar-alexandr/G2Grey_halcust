@@ -813,7 +813,7 @@ begin
   RecordField(Phone,M4Str,20,0);
   RecordField(Fax,M4Str,20,0);
   RecordField(CustCat,M4Code,5,0);
-  RecordField(Comment,M4Str,60,0);
+  RecordField(Comment,M4Str,255,0);//60-255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:42:52
   RecordField(PayDeal,M4Code,2,0);
   RecordField(ExportFlag,M4Int,0,0);
   RecordField(AccFlag,M4Int,0,0);
@@ -946,9 +946,9 @@ begin
   RecordField(Passphrase,M4Str,20,0);
   RecordField(SIPCode,M4Str,60,0);
   RecordField(AltPhone,M4Str,20,0);
-  RecordField(Comment0,M4Str,60,0);
-  RecordField(Comment1,M4Str,60,0);
-  RecordField(Comment2,M4Str,60,0);
+  RecordField(Comment0,M4Str,255,0);//60-255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:43:12
+  RecordField(Comment1,M4Str,255,0);//60-255//// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:43:20
+  RecordField(Comment2,M4Str,255,0);//60-255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:43:24
   RecordField(Title,M4Str,60,0);
   RecordField(Salutation1,M4Str,60,0);
   RecordField(Salutation2,M4Str,60,0);
@@ -1435,7 +1435,7 @@ begin
   RecordField(Math,M4Matrix,0,0);
   RecordField(PRCode,M4Code,20,PRVc);
   RecordField(Printdf,M4Int,0,0);
-  RecordField(Comment,M4Str,60,0);
+  RecordField(Comment,M4Str,255,0);//60->255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:42:17
   RecordField(InclVAT,M4Int,0,0);
   RecordField(Location,M4Code,10,0);
   FieldIsLocation(Location);
@@ -1872,7 +1872,7 @@ begin
   RecordField(ToRateB1,M4Rate,0,0);
   RecordField(ExportFlag,M4Int,0,0);
   RecordField(VEVatCode,M4Code,2,0);
-  RecordField(Comment,M4Str,60,0);
+  RecordField(Comment,M4Str,255,0);//60-255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:40:53
   RecordField(CalcVATVal,M4Val,0,0);
   RecordField(Closed,M4Int,0,0);
   RecordField(Objects,M4UStr,60,ObjVc);
@@ -2120,7 +2120,7 @@ begin
   RecordField(ExportFlag,M4Int,0,0);
   RecordField(PayDeal,M4Code,2,0);
   RecordField(VEVatCode,M4Code,2,0);
-  RecordField(Comment,M4Str,60,0);
+  RecordField(Comment,M4Str,255,0);//60-255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:40:26
   RecordField(Objects,M4UStr,60,ObjVc);
   RecordField(PrelBook,M4Int,0,0);
   RecordField(CredInv,M4Long,0,0);
@@ -3484,7 +3484,7 @@ begin
   ArrayField(ovst,M4Int,0,0);
   ArrayField(VISerNr,M4Long,0,0);
   ArrayField(BankAcc,M4Str,60,0);
-  ArrayField(Comment,M4Str,200,0);
+  ArrayField(Comment,M4Str,255,0);//200->255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:41:28
   ArrayField(VECode,M4Code,20,VEVc);
   ArrayField(Objects,M4UStr,60,ObjVc);
   ArrayField(VATVal,M4Val,0,0);
@@ -3653,7 +3653,7 @@ begin
   RecordField(InvType,M4Int,0,0);
   RecordField(ExportFlag,M4Int,0,0);
   RecordField(VEVatCode,M4Code,2,0);
-  RecordField(Comment,M4Str,60,0);
+  RecordField(Comment,M4Str,255,0);//60->255// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 22 January 2018 16:40:01
   RecordField(Objects,M4UStr,60,ObjVc);
   RecordField(PrelBook,M4Int,0,0);
   RecordField(CredInv,M4Long,0,0);
