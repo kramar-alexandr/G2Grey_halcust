@@ -686,6 +686,45 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   RadioButton(h,v+=16,1,0,        "ПДВ з прибутку",Rule);  
   SpecialMenu("",0,0,"");    
   EndWindow;
+  
+  
+  WindowBegin("Тип документу",DocumentTypeSClass,CGslist,-);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 March 2018 14:16:35
+  SpawnClass(DocumentTypeDClass);
+  SetWRect(10,80,640,298);
+  Sizeable(-1,-1,0,0);
+  UseView(DocumentTypeVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(5,5,"Тип",Type,false,Type);
+  RlCol(100,100, "Назва",Name,false);
+  SearchField("Пошук");
+  EndWindow;  
+  
+    WindowBegin("Тип документу",DocumentTypeLClass,CGmlist,-);
+  SpawnClass(DocumentTypeDClass);
+  SetWRect(10,80,640,298);
+  Sizeable(-1,-1,0,0);
+  UseView(DocumentTypeVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(5,5,"Тип",Type,false,Type);
+  RlCol(100,100, "Назва",Name,false);
+  SearchField("Пошук");
+  EndWindow;
+
+  WindowBegin("Тип документу",DocumentTypeDClass,CGview,-);
+  SetWRect(20,80,540,260);
+  //Sizeable(-1,-1,0,0);
+  //FormName(AT2WrofForm);
+  UseView(DocumentTypeVc);
+  vs = 20; h=100; h1=280; h2=380;  
+  EditField(h,v=10, 100, "Тип",Normal,Type,false,0);
+  EditField(h,v+=vs,200, "Назва",Normal,Name,false,0);
+ // EditField(h,v+=vs,100, "Умовный ІПН",Normal,IPN,false,0);
+  //EditField(h,v+=vs,200, "Умовна назва",Normal,Comment,false,0);
+  //ButtonFrame(h=350,v=20,100,2,"Правило для записів");
+  //RadioButton(h,v,0,0,            "Звичайне",Rule);
+  //RadioButton(h,v+=16,1,0,        "ПДВ з прибутку",Rule);  
+  //SpecialMenu("",0,0,"");    
+  EndWindow;
 
   WindowBegin("Експорт виписаних ПН",ExportVATIVXMLTClass,CGSbl,ExportVATIVXMLType); // SAV NS-36 настройки экспорта в веб
   SetWRect(20,80,550,310);

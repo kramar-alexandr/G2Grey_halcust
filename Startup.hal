@@ -77,6 +77,7 @@ begin
 	Setting("Серії номерів - Податкові накладні виписані",VATIVSerTClass,modSL);
 	Setting("Серії номерів - Податкові накладні отримані",VATVISerTClass,modPL);
 	Setting("Тип господарської операції",OperTypeLClass,modPL);
+	Setting("Тип документу",DocumentTypeLClass,modPL);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 March 2018 14:30:29
 	Setting("Експорт виписаних ПН",ExportVATIVXMLTClass,modNL);
 	Export("Реєстр отриманих та виданих податкових накладних",VATIVVIRegUkrEClass,VATIVVIRegUkrEn,modNL);
 	Setting("Поля, що задає користувач - Товари",INUserLabelTClass,modSL);

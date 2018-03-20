@@ -1961,7 +1961,7 @@ begin
   RecordField(VETaxTemplateCode,M4Code,10,TaxTemplateVc);// 6.2
   RecordField(TaxMatrix,M4PackedMatrix,0,TaxMatrixVc);// 6.2
   RecordField(OperType,M4Code,10,0);// 6.2
-
+	RecordField(DocumentType,M4Code,20,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 March 2018 14:12:18
   MainKeyBegin(SerNr,1);
   StoreInBaseKey;
   AppendFieldToKeyName(SalesGroup);
@@ -4070,5 +4070,14 @@ begin
 		KeySegment(SerNr);
   EndRecord;
 	
+	RecordBegin(DocumentTypeVc,-,"");
+  RecordField(Type,M4Code,20,0);
+  RecordField(Name,M4Str,100,0);
+  RecordField(Rule,M4Int,0,0);
+  RecordField(IPN,M4Str,20,0);
+  RecordField(Comment,M4Str,255,0);
+  MainKeyBegin(Type,0);
+  KeySegment(Type);
+  EndRecord;
 	
 end;
