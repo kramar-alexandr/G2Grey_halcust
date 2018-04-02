@@ -42,18 +42,18 @@ begin
   EditField(h,v+=20,300,"Текст",Normal ,Desc0,false,0);
   EditField(h,v+=20,300,"",Normal ,Desc1,false,0);
   EditField(h,v+=20,300,"",Normal ,Desc2,false,0);
-  ButtonFrame(h,vm=(v+=45),150,3,"Статус");
+  ButtonFrame(h,vm=(v+=45),150,4,"Статус");
   RadioButton(h,v,0,0,"активний",Terminated);
   RadioButton(h,v+=16,2,0,"не зареєтр. записи опер.",Terminated);
   RadioButton(h,v+=16,1,0,"завершено",Terminated);
-
-
+	RadioButton(h,v+=16,3,0,"попередньо завершено",Terminated);
+	
   ButtonFrame(h=280,v=vm,150,3,"Вид проекту");
   RadioButton(h,v,0,0,"оплачуваний",Type);
   RadioButton(h,v+=16,1,255,"внутрішній",Type);
   RadioButton(h,v+=16,2,255,"інший",Type);
-  CheckBox(-200,v=vm,0,"не виписувати акт/накл.",StopInvoicing); // 62
-
+  
+  CheckBox(-200,v=vm-40,0,"не виписувати акт/накл.",StopInvoicing); // 62
   ButtonFrame(h=460,v=vm,220,3,"Використання товарів в бюдж. проекта");
   RadioButton(h,v,0,0,"без попередження",TBIVItemsUsage);
   RadioButton(h,v+=16,1,255,"попередження",TBIVItemsUsage);
@@ -61,6 +61,7 @@ begin
   EditField(-110,v=26,70,"Дата початку",Normal ,StartDate,false,PasteCurDate);
   EditField(-110,v+=20,70,"Дата закінчення",Normal ,EndDate,false,PasteCurDate);
   EditField(-110,v+=20,70,"Дата завершення",ViewOnly,FinishedDate,false,0);
+  EditField(-110,v+=20,70,"Дата попереднього завершення",ViewOnly,PreFinishedDate,false,0);
   EditField(-110,v+=20,70,"Валюта проекта",Normal,CurncyCode,false,CurncyCodeSClass);
   Tile(2,130,false,"2",Members);
   h=120; h2=300; v=6;

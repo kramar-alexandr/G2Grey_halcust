@@ -266,6 +266,7 @@ begin
   RecordField(MaxRetSum,M4Val,0,0);//== 6.2
   RecordField(ProjType,M4Int,0,0);				// was added 
   RecordField(Ident,M4Code,20,PRVc);			// was added
+  RecordField(PreFinishedDate,M4Date,0,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 30 March 2018 12:12:27
   ArrayBegin(Math,-,1);
   ArrayField(PlanDate,M4Date,0,0);
   ArrayField(InvNr,M4Long,0,IVVc);
