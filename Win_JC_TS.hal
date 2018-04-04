@@ -23,7 +23,7 @@ begin
   EditField(h=80,v=6,120,"Проект",St_i,Code,false,TSerSClass);
   EditField(300,v,-210,"Старший",Normal,MotherCode,false,PRSClass);
   EditField(-100,v,-40,"Тип",Normal,PRClass,false,PRClassSClass);
-  EditField(h,v+=20,-210,"Опис",Normal,Name,false,0);
+  EditField(h,v+=20,-110,"Опис",Normal,Name,false,0);
   EditField(-100,v,-40,"Рівень",Normal,PRStage,false,PRStageSClass);
   TileButton(1,"Умови");
   TileButton(2,"Учасники");
