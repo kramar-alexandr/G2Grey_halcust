@@ -22,6 +22,7 @@ external updating function boolean POItemCreate(record POVc ,row POVc , integer 
 external updating function boolean POItemDelete(longint );
 external function Boolean CheckSign(string);
 external inner function Boolean CurncyCodeRegistered(string);// Edit ************************** Friday, 13 September 2013 11:11:27
+external inner procedure ExtractObj(string,var Integer,var string);
 
 
 external inner procedure GetFullCurncyRate (var string,Date,var val,var val,var val,var val,var val);
@@ -591,10 +592,13 @@ BEGIN
   boolean TrHr;
   record VIVc VIr;
   row VIVc VIrw;
-  Integer i;
+  Integer i,mtrw,pos;
   string 10 curus,tstr;
   string 60 cursign;
   string 1 ch;
+  record AccVc Accr;
+  string 200 newobjstr;
+  record ObjVc Objr;
   
    res = 0;
 	if nonblank(VIp.InvoiceNr) then begin
@@ -627,6 +631,49 @@ BEGIN
     if VIp.OKFlag==0 and VI2p.OKFlag==1 then begin
        VIp.PrelBook=0;
     end;
+  // Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 April 2018 15:23:24
+	
+  newobjstr = "";// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 April 2018 15:23:18
+  mtrw = matrowcnt(VIp);
+  For(i=0;i<mtrw;i=i+1) begin// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 April 2018 15:16:46
+	  matrowget(VIp,i,VIrw);
+	  	if(VIrw.stp==1)then begin
+	  		if(nonblank(VIrw.AccNumber))then begin
+	  			Accr.AccNumber = VIrw.AccNumber;
+					ReadFirstKey("AccNumber",Accr,1,true);
+					if(Accr.AccType==4)then begin
+						pos = 0;
+						if(nonblank(VIrw.Objects))then begin
+							ExtractObj(VIrw.Objects,pos,tstr);
+							while(nonblank(tstr))begin
+								if(nonblank(tstr))then begin
+									Objr.Code = tstr;
+									if(readfirstmain(Objr,1,true))then begin
+										if(Objr.OTCode=="CUST" or Objr.OTCode=="SUPPL")then begin
+											if(blank(newobjstr))then begin
+												newobjstr = tstr;
+											end else begin
+												newobjstr = newobjstr & "," & tstr;
+											end;
+										end;
+									end;
+								end;
+								ExtractObj(VIrw.Objects,pos,tstr);
+							end;
+						end;
+					end;
+	  		end;
+	  	end;
+	  	if(nonblank(newobjstr))then begin
+	  		VIrw.Objects = newobjstr;
+	  	end;
+	  matrowput(VIp,i,VIrw);
+	end;  
+	
+    
+	// Edit End ---------------------------------------------- Edit End
+	
 	if res!=-1 then begin
 		res=inner.VIVcRecordCheck(VIp,VI2p,stat,long4);
 	end;
