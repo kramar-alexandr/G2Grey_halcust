@@ -642,7 +642,7 @@ BEGIN
 	  		if(nonblank(VIrw.AccNumber))then begin
 	  			Accr.AccNumber = VIrw.AccNumber;
 					ReadFirstKey("AccNumber",Accr,1,true);
-					if(Accr.AccType==4)then begin
+					if(Accr.AccType==0 or Accr.AccType==1 or Accr.AccType==2)then begin
 						pos = 0;
 						if(nonblank(VIrw.Objects))then begin
 							ExtractObj(VIrw.Objects,pos,tstr);
