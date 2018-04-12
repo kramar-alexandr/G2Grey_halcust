@@ -89,11 +89,11 @@ BEGIN
   printf = true;
   if (nonblank(SIr.Code)) then begin
 	OldSIr.Code=SIr.Code;
-	if (readfirstmain(OldSIr,1,true)) then begin end;
+	if (readfirstkey("Code",OldSIr,1,true)) then begin end;
   end;
   if (nonblank(RepSpec.f1 )) and blank(OldSIr.Code) then begin
 	OldSIr.Code=RepSpec.f1;
-	if (readfirstmain(OldSIr,1,true)) then begin end;
+	if (readfirstkey("Code",OldSIr,1,true)) then begin end;
   end;
   while (printf) begin  
     formcode = "";

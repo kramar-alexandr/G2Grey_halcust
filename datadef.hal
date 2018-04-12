@@ -3832,6 +3832,7 @@ begin
   EndBlock;
  
  RecordBegin(ContractsVc,-,"ContractsVc");// SAV Gray-5 2011_01_03
+ 	RecordField(SerNr,M4Long,0,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 12 April 2018 12:19:02
  	RecordField(CustCode,M4Code,20,CUVc);
 	RecordField(Code,M4Str,60,0);
 	RecordField(TransDate,M4Date,0,0);
@@ -3841,43 +3842,51 @@ begin
 	RecordField(OKFlag,M4Mark,0,0);
 	RecordField(Closed,M4Mark,0,0);
 	RecordField(ActDate,M4Date,0,0);
-	MainKeyBegin(CustCode,0);
+	
+	MainKeyBegin(SerNr,0);
+		KeySegment(SerNr);
+	KeyBegin(Code);
+		KeySegment(Code);
+		KeySegment(SerNr);
+	KeyBegin(CodeCustCode);
+		KeySegment(Code);
+		KeySegment(CustCode);
+		KeySegment(SerNr);
+	KeyBegin(CustCode);
    KeySegment(CustCode);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(TransDate);
    KeySegment(TransDate);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(OKFlag);
    KeySegment(OKFlag);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(Closed);
    KeySegment(Closed);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(SearchKey);
    KeySegment(SearchKey);
-   KeySegment(Code);
-	KeyBegin(Code);
-   KeySegment(Code);
-	//
+   KeySegment(SerNr);
 	KeyBegin(ActCode);
-   KeySegment(Code);
+		KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(ActTransDate);
    KeySegment(TransDate);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(ActCustCode);
    KeySegment(CustCode);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(ActOKFlag);
    KeySegment(OKFlag);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	KeyBegin(ActSearchKey);
    KeySegment(SearchKey);
-   KeySegment(Code);
+   KeySegment(SerNr);
 	
   
   KeyBegin(ActDate);
   KeySegment(ActDate);
-  KeySegment(Code);
+  KeySegment(SerNr);
 
 	EndRecord;
  

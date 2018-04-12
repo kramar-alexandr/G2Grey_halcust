@@ -638,6 +638,8 @@ BEGIN
   mtrw = matrowcnt(VIp);
   For(i=0;i<mtrw;i=i+1) begin// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 April 2018 15:16:46
 	  matrowget(VIp,i,VIrw);
+	  	tstr = "";
+			newobjstr = "";
 	  	if(VIrw.stp==1)then begin
 	  		if(nonblank(VIrw.AccNumber))then begin
 	  			Accr.AccNumber = VIrw.AccNumber;
@@ -650,7 +652,7 @@ BEGIN
 								if(nonblank(tstr))then begin
 									Objr.Code = tstr;
 									if(readfirstmain(Objr,1,true))then begin
-										if(Objr.OTCode=="CUST" or Objr.OTCode=="SUPPL")then begin
+										if(Objr.OTCode=="CUST" or Objr.OTCode=="SUPPL" or Objr.OTCode=="CLIEN")then begin
 											if(blank(newobjstr))then begin
 												newobjstr = tstr;
 											end else begin
@@ -1336,6 +1338,33 @@ begin
   end;
   
   ContractsVcRecordInIndex = res;
+  return;
+end;
+
+global
+function LongInt ContractsVcRecordCheck(var record ContractsVc CTp,record ContractsVc CT2p,LongInt stat,LongInt long4)// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 12 April 2018 15:22:14
+begin
+  LongInt res;
+  
+  res = 0;
+  
+  if(CTp.SerNr<0)then begin
+  	CTp.SerNr = NextSerNr("ContractsVc",CurrentDate,-1,false,"");
+  end;
+  
+  ContractsVcRecordCheck = res;
+  return;
+end;
+
+global
+function LongInt ContractsVcRecordDuplicate(var record ContractsVc CTp,record ContractsVc CT2p,LongInt stat,LongInt long4)// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 12 April 2018 15:22:14
+begin
+  LongInt res;
+  
+  
+  CTp.SerNr = -1;
+  
+  ContractsVcRecordDuplicate = res;
   return;
 end;
 
