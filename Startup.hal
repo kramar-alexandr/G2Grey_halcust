@@ -83,6 +83,8 @@ begin
 	Setting("Поля, що задає користувач - Товари",INUserLabelTClass,modSL);
 	Report("TSRowRn",PurOrdJRClass,TSRowRn,0,modSL);
 	
+	Import("Востановить линки контрактов",0,GetLinksIn,modSL);
+	
 	Setting("Коди податкових кредитів",VICredRowsLClass,modPL);
 	Setting("Коди податкових забов'язань",IVDebRowsLClass,modSL);
 	

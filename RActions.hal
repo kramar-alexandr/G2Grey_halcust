@@ -1423,3 +1423,47 @@ begin
    VATIVVcRecordDuplicate = res;  
   RETURN;
 END;
+
+
+global updating procedure GetLinksIn()
+begin
+	record ContractsVc CTr;
+	record Attach2Vc Atr;
+	string 255 cust,code,attnr;
+	record RLinkVc RLr;
+	boolean TrHs;
+	
+	while (TestEOF()==false) begin
+		
+		cust = ImportField;
+		code = ImportField;
+		attnr = ImportField;
+		
+		CTr.CustCode = cust;
+		CTr.Code = code;
+		if(readfirstkey("CodeCustCode",CTr,2,true))then begin
+			Atr.SerNr = Stringtolongint(attnr); 
+			if(readfirstmain(Atr,1,true))then begin
+				RLr.ToRecidStr = BuildRecordIdStr(Atr,currentcompany);
+				TrHs = true;
+				if(readfirstkey("ToRecKey",RLr,1,TrHs))then begin
+					//if(RLr.ToRecidStr!=BuildRecordIdStr(Atr,currentcompany))then begin TrHs = false; end;
+					
+					if(TrHs)then begin
+						logtext(0,cust & "   " & RLr.Comment);
+						RLr.FromRecidStr = BuildRecordIdStr(CTr,currentcompany);
+						recordstore(RLr,true);
+					end;
+					//logtext(0,RLr.Comment);
+				end;
+				resetloop(RLr);
+				//createrecordlink(CTr,currentcompany,Atr,currentcompany);
+				//createrecordlink(Atr,currentcompany,CTr,currentcompany);
+			end;
+		end;
+		
+		NextImportLine(true);
+	end;
+
+return;
+end;

@@ -106,11 +106,25 @@ end;
 
 procedure OutProj(record PRVc PRr,var integer prcnt,integer mode)   // Вывод проекта прошедшего все проверки.
 begin
-Integer cntlvl,i;
+Integer cntlvl,i,rwcnt;
 array string 20 seniorpr;
 array string 60 seniorprn;
 longint qtnr;
 Boolean foundf;
+string 100 type;
+record PRClassBlock PRClassRec;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:40:31
+row PRClassBlock PRClassrw;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:40:31
+	
+	 BlockLoad(PRClassRec);
+	
+	rwcnt = MatRowCnt(PRClassRec);
+  for (i=0;i<rwcnt;i=i+1) begin
+    MatRowGet(PRClassRec,i,PRClassrw);
+    if(PRClassrw.Code==PRr.PRClass)then begin
+			type = PRClassrw.Comment;
+    end;
+  end;
+  
 prcnt=prcnt+1;
   if PRr.ProjType==0 or PRr.ProjType==3 then begin        // вывод одиночного или самого старшего проекта
     StartFormat(15);
@@ -119,9 +133,9 @@ prcnt=prcnt+1;
       OutString(55,0,"-",false); //2
       OutString(115,0,"-",false); //3
       OutString(205,0,"-",false); //4
-      OutString(240,0,"-",false); //5
-      OutString(280,0,"-",false); //6
-      OutString(300,0,PRr.Name,false); // cur
+      OutString(240,0,type,false); //5
+      OutString(280,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:46
+      //OutString(300,0,PRr.Name,false); // cur
 
     end else begin                                        // в Excel, File, Buffer
       OutString(15,"DblPRCode",PRr.Code,false); //1
@@ -132,10 +146,10 @@ prcnt=prcnt+1;
       OutString(135,0,"-",false); //3
       OutString(205,0,"-",false); //4
       OutString(215,0,"-",false); //4
-      OutString(240,0,"-",false); //5
-      OutString(245,0,"-",false); //5
-      OutString(280,0,"-",false); //6
-      OutString(285,0,"-",false); //6
+      OutString(240,0,type,false); //5
+      OutString(245,0,"",false); //5
+      OutString(280,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:57
+      OutString(285,0,"",false); //6
       OutString(300,0,PRr.Name,false); // cur
     end;
     if nonblank(PRr.Leader) then begin
@@ -202,22 +216,26 @@ prcnt=prcnt+1;
       if mode==1 then begin
       OutString(215,0,seniorprn[cntlvl-3],false); //4
       end;
-      if seniorpr[cntlvl-4]!="-" then begin
+      /*if seniorpr[cntlvl-4]!="-" then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:37:00
         OutString(240,"DblPRCode",seniorpr[cntlvl-4],false); //5
       end else begin
         OutString(240,0,seniorpr[cntlvl-4],false); //5
-      end;
+      end;*/
+      OutString(240,0,type,false); //5// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:36:58
+      
       if mode==1 then begin
-      OutString(245,0,seniorprn[cntlvl-4],false); //5
+      //OutString(245,0,seniorprn[cntlvl-4],false); //5
+      OutString(245,0,"",false); //5
       end;
-      if seniorpr[cntlvl-5]!="-" then begin
+      /*if seniorpr[cntlvl-5]!="-" then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:34:27
         OutString(280,"DblPRCode",seniorpr[cntlvl-5],false); //6
       end else begin
         OutString(280,0,seniorpr[cntlvl-5],false); //6
       end;
       if mode==1 then begin
       OutString(285,0,seniorprn[cntlvl-5],false); //6
-      end;
+      end;*/
+      OutString(280,0,PRr.Text0,false);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:34:40
       OutString(300,0,PRr.Name,false); // cur
       if nonblank(PRr.Leader) then begin
         OutString(415,0,PRr.Leader,false);
@@ -280,6 +298,10 @@ res=true;
   if ((RepSpec.flags[10]==0) and (PRr.Type==0)) then begin res=false; goto LCheckIsProject; end;
   if ((RepSpec.flags[11]==0) and (PRr.Type==1)) then begin res=false; goto LCheckIsProject; end;    
   if ((RepSpec.flags[12]==0) and (PRr.Type==2)) then begin res=false; goto LCheckIsProject; end;
+  
+  if ((RepSpec.flags[13]==0) and (PRr.Terminated==3)) then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:28:41
+	if(nonblank(RepSpec.f4) and RepSpec.f4!=PRr.Text0)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:30:19
+  
 LCheckIsProject:;
 CheckIsProject=res;
   return;
@@ -388,10 +410,10 @@ begin
       OutString(135,0,"Найменування 3",false); //3
       OutString(205,0,"Рівень 4",false); //4
       OutString(215,0,"Найменування 4",false); //4
-      OutString(240,0,"Рівень 5",false); //5
-      OutString(245,0,"Найменування 5",false); //5
-      OutString(280,0,"Рівень 6",false); //6
-      OutString(285,0,"Найменування 6",false); //6
+      OutString(240,0,"Тип",false); //5
+      OutString(245,0,"",false); //5
+      OutString(280,0,"Текст",false); //6
+      OutString(285,0,"",false); //6
       OutString(300,0,"Найменування поточного проекту",false); // cur
       OutString(415,0,USetStr(4863),false);
       OutString(416,0,"Дата початку",false);
@@ -403,8 +425,8 @@ begin
       OutString(55,0,"| 2 |",false);  //2
       OutString(115,0,"| 3 |",false);  //3
       OutString(205,0,"| 4 |",false);  //4
-      OutString(240,0,"| 5 |",false);  //5
-      OutString(280,0,"| 6 |",false);  //6
+      OutString(240,0,"Тип",false);  //5
+      OutString(280,0,"Текст",false);  //6
       OutString(300,0,"Найменування",false); // cur
       OutString(415,0,USetStr(4863),false);
       OutString(1,0,"QT",true);
@@ -420,9 +442,9 @@ begin
     end;
     if TrHr then begin
       if PRr.ProjType==0 then begin
-      checkpr=true;
-      codd="";
-      RunInProjTreeDown(PRr,RepSpec,frpr,topr,frcu,tocu,prcnt,checkpr,codd,mode);
+				checkpr=true;
+				codd="";
+				RunInProjTreeDown(PRr,RepSpec,frpr,topr,frcu,tocu,prcnt,checkpr,codd,mode);
       end else begin
         if CheckIsProject(PRr,RepSpec,frpr,topr,frcu,tocu) then begin
           OutProj(PRr,prcnt,mode);
