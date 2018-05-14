@@ -129,31 +129,31 @@ prcnt=prcnt+1;
   if PRr.ProjType==0 or PRr.ProjType==3 then begin        // вывод одиночного или самого старшего проекта
     StartFormat(15);
     if mode==0 then begin                                 // на экран
-      OutString(15,"DblPRCode",PRr.Code,false); //1
-      OutString(55,0,"-",false); //2
-      OutString(115,0,"-",false); //3
-      OutString(205,0,"-",false); //4
-      OutString(240,0,type,false); //5
-      OutString(280,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:46
+      OutString(0,"DblPRCode",PRr.Code,false); //1
+      OutString(40,0,"-",false); //2
+      OutString(80,0,"-",false); //3
+      OutString(130,0,"-",false); //4
+      OutString(180,0,type,false); //5
+      OutString(240,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:46
       //OutString(300,0,PRr.Name,false); // cur
 
     end else begin                                        // в Excel, File, Buffer
-      OutString(15,"DblPRCode",PRr.Code,false); //1
+      OutString(0,"DblPRCode",PRr.Code,false); //1
       OutString(25,0,PRr.Name,false); //1
       OutString(55,0,"-",false); //2
       OutString(65,0,"-",false); //2
       OutString(115,0,"-",false); //3
       OutString(135,0,"-",false); //3
-      OutString(205,0,"-",false); //4
-      OutString(215,0,"-",false); //4
-      OutString(240,0,type,false); //5
-      OutString(245,0,"",false); //5
-      OutString(280,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:57
+      OutString(280,0,"-",false); //4
+      OutString(290,0,"-",false); //4
+      OutString(180,0,type,false); //5
+      OutString(220,0,"",false); //5
+      OutString(240,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:57
       OutString(285,0,"",false); //6
       OutString(300,0,PRr.Name,false); // cur
     end;
     if nonblank(PRr.Leader) then begin
-      OutString(415,0,PRr.Leader,false);
+      OutString(430,0,PRr.Leader,false);
     end else begin
 
 
@@ -188,30 +188,30 @@ prcnt=prcnt+1;
     seniorprn[cntlvl]=PRr.Name;
     FindSeniorProjects(PRr.MotherCode,seniorpr,seniorprn,cntlvl);
     StartFormat(15);
-      OutString(15,"DblPRCode",seniorpr[cntlvl],false); //1
+      OutString(0,"DblPRCode",seniorpr[cntlvl],false); //1
       if mode==1 then begin
-      OutString(25,0,seniorprn[cntlvl],false); //1
+      OutString(0,0,seniorprn[cntlvl],false); //1
       end;
       if seniorpr[cntlvl-1]!="-" then begin
-        OutString(55,"DblPRCode",seniorpr[cntlvl-1],false); //2
+        OutString(40,"DblPRCode",seniorpr[cntlvl-1],false); //2
       end else begin
-        OutString(55,0,seniorpr[cntlvl-1],false); //2
+        OutString(40,0,seniorpr[cntlvl-1],false); //2
       end;
       if mode==1 then begin
-      OutString(65,0,seniorprn[cntlvl-1],false); //2
+      OutString(40,0,seniorprn[cntlvl-1],false); //2
       end;
       if seniorpr[cntlvl-2]!="-" then begin
-        OutString(115,"DblPRCode",seniorpr[cntlvl-2],false); //3
+        OutString(80,"DblPRCode",seniorpr[cntlvl-2],false); //3
       end else begin
-        OutString(115,0,seniorpr[cntlvl-2],false); //3
+        OutString(80,0,seniorpr[cntlvl-2],false); //3
       end;
       if mode==1 then begin
-      OutString(135,0,seniorprn[cntlvl-2],false); //3
+      OutString(80,0,seniorprn[cntlvl-2],false); //3
       end;
       if seniorpr[cntlvl-3]!="-" then begin
-        OutString(205,"DblPRCode",seniorpr[cntlvl-3],false); //4
+        OutString(130,"DblPRCode",seniorpr[cntlvl-3],false); //4
       end else begin
-        OutString(205,0,seniorpr[cntlvl-3],false); //4
+        OutString(130,0,seniorpr[cntlvl-3],false); //4
       end;
       if mode==1 then begin
       OutString(215,0,seniorprn[cntlvl-3],false); //4
@@ -221,11 +221,11 @@ prcnt=prcnt+1;
       end else begin
         OutString(240,0,seniorpr[cntlvl-4],false); //5
       end;*/
-      OutString(240,0,type,false); //5// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:36:58
+      OutString(180,0,type,false); //5// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:36:58
       
       if mode==1 then begin
       //OutString(245,0,seniorprn[cntlvl-4],false); //5
-      OutString(245,0,"",false); //5
+      OutString(190,0,"",false); //5
       end;
       /*if seniorpr[cntlvl-5]!="-" then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:34:27
         OutString(280,"DblPRCode",seniorpr[cntlvl-5],false); //6
@@ -235,12 +235,12 @@ prcnt=prcnt+1;
       if mode==1 then begin
       OutString(285,0,seniorprn[cntlvl-5],false); //6
       end;*/
-      OutString(280,0,PRr.Text0,false);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:34:40
+      OutString(240,0,PRr.Text0,false);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:34:40
       OutString(300,0,PRr.Name,false); // cur
       if nonblank(PRr.Leader) then begin
-        OutString(415,0,PRr.Leader,false);
+        OutString(430,0,PRr.Leader,false);
       end else begin
-        OutString(415,0,"-",false);
+        OutString(430,0,"-",false);
       end;
       if mode==1 then begin   // в Excel, File, Buffer
         if nonblankdate(PRr.StartDate) then begin
@@ -271,6 +271,7 @@ end;
 function Boolean CheckIsProject(record PRVc PRr,record RcVc RepSpec,string frpr,string topr,string frcu,string tocu)  // проверка проекта на условия отчёта
 begin
 Boolean res;
+boolean flagfnd;// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 14 May 2018 15:26:51
 
 res=true;
   if PRr.ProjType==3 then begin
@@ -278,7 +279,10 @@ res=true;
   end;
   if (nonblank(frcu) and ((PRr.CustCode<frcu) or (PRr.CustCode>tocu))) then begin res=false; goto LCheckIsProject; end;
   if (nonblank(RepSpec.f2) and (RepSpec.f2<>PRr.Leader)) then begin res=false; goto LCheckIsProject; end;
-  if RepSpec.flags[19]==1 then begin
+  
+  flagfnd = false;
+  
+  /*if RepSpec.flags[19]==1 then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 14 May 2018 15:26:52
     if RepSpec.flags[20]==0 then begin
       if PRr.Terminated==1 then begin
       res=false; goto LCheckIsProject;
@@ -292,14 +296,32 @@ res=true;
     end else begin
       res=false; goto LCheckIsProject;
     end;
+  end;*/
+  // Edit Start ---------------------------------------------- Edit Start
+	//Monday, 14 May 2018 15:26:48
+	
+  if(RepSpec.flags[19]==1 and (PRr.Terminated==0 or PRr.Terminated==2))then begin
+  	flagfnd = true;
   end;
+  if(RepSpec.flags[20]==1 and PRr.Terminated==1)then begin
+  	flagfnd = true;
+  end;
+  if(RepSpec.flags[21]==1 and PRr.Terminated==3)then begin
+  	flagfnd = true;
+  end;
+  
+  if(flagfnd==false)then begin
+  	res=false; goto LCheckIsProject;
+  end;
+  
+	// Edit End ---------------------------------------------- Edit End
+	
   if (nonblank(RepSpec.FirstAcc) and (RepSpec.FirstAcc<>PRr.PRClass)) then begin res=false; goto LCheckIsProject; end;    
   if (nonblank(RepSpec.LastAcc) and (RepSpec.LastAcc<>PRr.PrSalesMan)) then begin res=false; goto LCheckIsProject; end;   
   if ((RepSpec.flags[10]==0) and (PRr.Type==0)) then begin res=false; goto LCheckIsProject; end;
   if ((RepSpec.flags[11]==0) and (PRr.Type==1)) then begin res=false; goto LCheckIsProject; end;    
   if ((RepSpec.flags[12]==0) and (PRr.Type==2)) then begin res=false; goto LCheckIsProject; end;
   
-  if ((RepSpec.flags[13]==0) and (PRr.Terminated==3)) then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:28:41
 	if(nonblank(RepSpec.f4) and RepSpec.f4!=PRr.Text0)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:30:19
   
 LCheckIsProject:;
@@ -402,18 +424,18 @@ begin
   EndHeader;
   StartFormat(15);
     if (RepSpec.Media==mtFile) or (RepSpec.Media==mtExcel) or (RepSpec.Media==mtClipboard) then begin
-      OutString(15,0,"Рівень 1",false); //1
-      OutString(25,0,"Найменування 1",false); //1
-      OutString(55,0,"Рівень 2",false); //2
-      OutString(65,0,"Найменування 2",false); //2
-      OutString(115,0,"Рівень 3",false); //3
-      OutString(135,0,"Найменування 3",false); //3
-      OutString(205,0,"Рівень 4",false); //4
-      OutString(215,0,"Найменування 4",false); //4
-      OutString(240,0,"Тип",false); //5
-      OutString(245,0,"",false); //5
-      OutString(280,0,"Текст",false); //6
-      OutString(285,0,"",false); //6
+      OutString(0,0,"Рівень 1",false); //1
+      OutString(10,0,"Найменування 1",false); //1
+      OutString(40,0,"Рівень 2",false); //2
+      OutString(50,0,"Найменування 2",false); //2
+      OutString(100,0,"Рівень 3",false); //3
+      OutString(120,0,"Найменування 3",false); //3
+      OutString(190,0,"Рівень 4",false); //4
+      OutString(200,0,"Найменування 4",false); //4
+      OutString(225,0,"Тип",false); //5
+      OutString(230,0,"",false); //5
+      OutString(265,0,"Текст",false); //6
+      OutString(270,0,"",false); //6
       OutString(300,0,"Найменування поточного проекту",false); // cur
       OutString(415,0,USetStr(4863),false);
       OutString(416,0,"Дата початку",false);
@@ -421,14 +443,14 @@ begin
       OutString(1,0,"Cost estimate",true);
       mode=1;
     end else begin
-      OutString(15,0,"| 1 |",false);  //1
-      OutString(55,0,"| 2 |",false);  //2
-      OutString(115,0,"| 3 |",false);  //3
-      OutString(205,0,"| 4 |",false);  //4
-      OutString(240,0,"Тип",false);  //5
-      OutString(280,0,"Текст",false);  //6
+      OutString(0,0,"| 1 |",false);  //1// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 14 May 2018 15:26:42
+      OutString(40,0,"| 2 |",false);  //2
+      OutString(80,0,"| 3 |",false);  //3
+      OutString(130,0,"| 4 |",false);  //4
+      OutString(180,0,"Тип",false);  //5
+      OutString(240,0,"Текст",false);  //6
       OutString(300,0,"Найменування",false); // cur
-      OutString(415,0,USetStr(4863),false);
+      OutString(430,0,USetStr(4863),false);
       OutString(1,0,"QT",true);
       mode=0;
     end;

@@ -391,13 +391,16 @@ begin
   RadioButton(h,v,0,0,"докладний",ArtMode);
   RadioButton(h,v+=16,1,0,"зведений",ArtMode);
   RadioButton(h,v+=16,2,0,"зведений з найм.",ArtMode);*/// 62
-  ButtonFrame(h=60,vm=(v+=41),155,3,"Статус проектів");// 62
-  CheckBox(h,v=vm,0,"активні проекти",flags[19]);
+  v=160;
+  ButtonFrame(h=30,v,155,3,"Статус проектів");// 62
+  CheckBox(h,v,0,"активні проекти",flags[19]);
   CheckBox(h,v+=16,0,"завершені проекти",flags[20]);
-  CheckBox(h,v+=16,0,"Попередньо завершений",flags[13]);// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:18:28
-
-  ButtonFrame(h,vm=v+40,133,3,"Вид проекту");
-  CheckBox(h,v=vm,0,"оплачувані",flags[10]);
+  CheckBox(h,v+=16,0,"Попередньо завершений",flags[21]);// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:18:28
+	
+	h=220;
+	v=160;
+  ButtonFrame(h,v,133,3,"Вид проекту");
+  CheckBox(h,v,0,"оплачувані",flags[10]);
   CheckBox(h,v+=18,0,"внутрішні",flags[11]);
   CheckBox(h,v+=18,0,"інші",flags[12]);
   /*ButtonFrame(h=220,v=(vm-112),133,5,"Сортувати за");// 62
@@ -406,7 +409,7 @@ begin
   RadioButton(h,v+=16,2,0,"наймен. проекта",flags[1]);
   RadioButton(h,v+=16,3,0,"наймен. клієнта",flags[1]);
   RadioButton(h,v+=16,4,0,"керівником",flags[1]);*/// 62
-  CheckBox(h=220,v=125,0,"Враховувати субпроекти",IncDaughter);// 62
+  //CheckBox(h=220,v=125,0,"Враховувати субпроекти",IncDaughter);// 62// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 14 May 2018 15:06:32
   EndWindow;
 
   WindowBegin("Визначте статистику по товарах сервісу",PrItemStatRClass,CGRcW,RcType);
