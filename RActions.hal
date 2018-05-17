@@ -1396,16 +1396,18 @@ BEGIN
 	if blank(VATIVp.ContractPayDeal) then begin VATIVp.ContractPayDeal="Оплата з поточного рахунку";end;
 	res = inner.VATIVVcRecordCheck(VATIVp,VATIV2p,stat,long4);
   // после рекордчека - т.е. только в том случае если прошли все проверки
-  if res==0 and VATIVp.OKFlag==1 and VATIV2p.OKFlag<>1 and VATIVp.VEPN==-1 then begin
-		OldVIr.TransDate = "01/" & getmonth(VATIVp.TransDate) & "/" & GetYear(VATIVp.TransDate);
-		trhs = true;
-		while (loopkey("TransDate",OldVIr,1,trhs)) begin
-			if (getmonth(OldVIr.TransDate)<>getmonth(VATIVp.TransDate)) then begin trhs = false; end;
-			if (OldVIr.SerNr<>VATIVp.SerNr) then begin
-				if lastnum < OldVIr.VEPN then begin lastnum = OldVIr.VEPN; end;
+  if(VATIVp.VEPN<1)then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 17 May 2018 13:58:41
+		if res==0 and VATIVp.OKFlag==1 and VATIV2p.OKFlag<>1 and VATIVp.VEPN==-1 then begin
+			OldVIr.TransDate = "01/" & getmonth(VATIVp.TransDate) & "/" & GetYear(VATIVp.TransDate);
+			trhs = true;
+			while (loopkey("TransDate",OldVIr,1,trhs)) begin
+				if (getmonth(OldVIr.TransDate)<>getmonth(VATIVp.TransDate)) then begin trhs = false; end;
+				if (OldVIr.SerNr<>VATIVp.SerNr) then begin
+					if lastnum < OldVIr.VEPN then begin lastnum = OldVIr.VEPN; end;
+				end;
 			end;
+			VATIVp.VEPN =lastnum+1;
 		end;
-		VATIVp.VEPN =lastnum+1;
   end;
   ourVATIVVcRecordCheck:;
   VATIVVcRecordCheck = res;

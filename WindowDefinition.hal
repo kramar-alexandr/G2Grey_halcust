@@ -513,7 +513,7 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   EditField(h1,v+=vs,82,"Дата акту/накл",ViewOnly,IVTransDate,false,PasteCurDate);
   EditField(h2,v=vm,135,"Відповідальний",Normal,OurContact,false,0);
   EditField(h3+50,v,50,"Продавець",Normal,SalesMan,false,UserSClass);
-  EditField(h3+50,v+20,100,"Номер ПН",Normal,VEPN,false,0);
+  EditField(h3+50,v+20,100,"Номер ПН",Normal,VEPN,false,VATIVPNSClass);
   EditField(h3+50,v+40,100,"Номер кор. ПН",Normal,VECorPN,false,VATIVSpecSClass);
   EditField(h3+50,v+60, 100,"Причина",Normal,Reason,false,StandProblemsSClass);
   EditField(h3+50,v+80, 100,"Код податк. забов.",Normal,DebRow,false,IVDebRowsSClass);// Edit ************************** Thursday, 31 October 2013 14:12:18
@@ -1519,5 +1519,10 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   SearchField("Пошук");
   EndWindow;
 	
+	WindowBegin("Номер ПН",VATIVPNSClass,CGother,HBlRecType);
+  SetWRect(240,80,600,298);
+  StringList(9,9,-20,-10);
+  EndWindow;
+		
 return;
 end;
