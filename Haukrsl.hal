@@ -1871,7 +1871,8 @@ RlColKey(-170,-170, "Џроект",PRCode,true,PRCode);// добавление столбца Проект //
    EditFieldTL(h,v+=vs,50,"“мови сплати",M4UStr,Normal,5,TransStr,false,PDSClass);
    EditFieldTL(h,v+=vs,250,"Ћфґцґйний номер",M4UStr,Normal,41,f6,false,0);
    EditFieldTL(h,v3=(v+=vs),50,"Њґн. сума",M4Val,Normal,0,vals0,false,0);
-   EditFieldTL(h,v3=(v+=vs),50,"“мови сплати",M4UStr,Normal,25,f9,false,DocumentTypeSClass);
+   EditFieldTL(h,v3=(v+=vs),50,"’ип документу",M4UStr,Normal,25,f9,false,DocumentTypeSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 21 May 2018 13:57:55
+
    ButtonFrame(h=320,v=vm+10,123,5,"‘татус");
    CheckBox(h,v,0,"незатвердженґ",flags[1]);
    CheckBox(h,v+=16,0,"затвердженґ",flags[2]);
