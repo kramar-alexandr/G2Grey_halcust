@@ -189,6 +189,17 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
    SetWRect(20,80,300,200);
 	EndWindow;
 	
+	WindowBegin("Замінити Тип проекту",UpdTypVClass,CGMnt,RcType);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 25 May 2018 17:16:53
+   SetWRect(20,80,300,200);
+   EditFieldTL(90,20,100,"Старий тип",M4UStr,Normal,41,f1,false,PRClassSClass);
+   EditFieldTL(90,40,100,"Новий тип",M4UStr,Normal,41,f2,false,PRClassSClass);
+	EndWindow;
+	WindowBegin("Замінити Классивікацію проекту",UpdClassVClass,CGMnt,RcType);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 25 May 2018 17:16:55
+   SetWRect(20,80,300,200);
+   EditFieldTL(150,20,100,"Стара класифікація",M4UStr,Normal,41,f1,false,PRClSClass);
+   EditFieldTL(150,40,100,"Нова класифікація",M4UStr,Normal,41,f2,false,PRClSClass);
+	EndWindow;
+	
 	WindowBegin("Визначте товар",sav_INSClass,CGslist,-);
   SetWRect(210,80,800,298);
   Sizeable(-1,-1,0,0);

@@ -61,6 +61,9 @@ begin
 	Maintenance("поновити поле фаза проекту",UpdPRStagePRVClass,UpdPRStagePRMn,modTS);
 	Maintenance("поновити поле валюта проекту",UpdPRCurncyCodeVClass,UpdPRCurncyCodeMn,modTS);
 	
+	Maintenance("Замінити Тип проекту",UpdTypVClass,UpdTypMn,modTS);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 25 May 2018 17:16:23
+	Maintenance("Замінити Классифікацію проекту",UpdClassVClass,UpdClassMn,modTS);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 25 May 2018 17:16:24
+	
 	Setting("Історія змін регистрів",RecordHistoryLClass,modSY);
 	Setting("Серії номерів - Історія змін регистрів",RecHistSerSerTClass,modSY);
 	Report("Історія змін регістру Контакти",RecHistCustRClass,RecHistCustRn,0,modSY);

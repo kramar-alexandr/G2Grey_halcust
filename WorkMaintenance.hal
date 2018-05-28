@@ -6,6 +6,8 @@ external inner procedure SetupVATBase(var record SMVc,var Integer);
 external inner procedure AddVATBase(var record SMVc,string,val,val,Integer,Integer,Integer);
 external inner procedure CalcVATBaseVAT(record SMVc,Integer,Integer,Integer,var val,var val);
 external inner procedure PUCalcPerc(val,string,var val);
+external inner procedure ExtractObj(string,var Integer,var string);
+
 /*
 global
 procedure POSumup(var record POVc POp)
@@ -567,6 +569,76 @@ record PRVc PRr,OldPRr;
 			if (RecordUpdate(OldPRr,PRr,false)==0) then begin end;
 		end;
 	end;
+return;
+end;
+
+
+global updating procedure UpdTypMn(record RcVc RepSpec)// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 25 May 2018 17:16:34
+begin
+	record PRVc PRr;
+	boolean testf;
+	
+	if(nonblank(RepSpec.f1) and nonblank(RepSpec.f2))then begin
+		if(RepSpec.f1!=RepSpec.f2)then begin
+			while(loopmain(PRr,1,true))begin
+				if(PRr.PRClass==RepSpec.f1)then begin
+					PRr.PRClass = RepSpec.f2;
+					logtext(0,"Project chanje type " & PRr.Code & " " & RepSpec.f1 & " -> " & RepSpec.f2);
+					logtext(0,PRr.PRClass);
+					recordstore(PRr,true);
+				end;
+			end;
+		end;
+	end;
+	
+return;
+end;
+
+
+global updating procedure UpdClassMn(record RcVc RepSpec)// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 25 May 2018 17:16:32
+begin
+	record PRVc PRr;
+	boolean testf;
+	integer pos;
+	string 100 tempclass,tstr;
+	
+	if(nonblank(RepSpec.f1) and nonblank(RepSpec.f2))then begin
+		if(RepSpec.f1!=RepSpec.f2)then begin
+			while(loopmain(PRr,1,true))begin
+				if(setinset(RepSpec.f1,PRr.PRClassification))then begin
+					pos = 0;
+					tempclass = "";
+					ExtractObj(PRr.PRClassification,pos,tstr);
+					
+					while(nonblank(tstr))begin
+						if(nonblank(tstr))then begin
+							if(!setinset(tstr,RepSpec.f1))then begin
+								if(nonblank(tempclass))then begin
+									tempclass = tempclass & ",";
+								end;
+								tempclass = tempclass & tstr;
+							end;
+						end;
+						ExtractObj(PRr.PRClassification,pos,tstr);
+					end;
+					
+					if(!setinset(RepSpec.f2,tempclass))then begin
+						if(nonblank(tempclass))then begin
+							tempclass = tempclass & ",";
+						end;
+						PRr.PRClassification = tempclass & RepSpec.f2;
+					end else begin
+						PRr.PRClassification = tempclass;
+					end;
+					
+					logtext(0,"Project chanje classification " & PRr.Code & " " & RepSpec.f1 & " -> " & RepSpec.f2);
+					logtext(0,PRr.PRClassification);
+					recordstore(PRr,true);
+				end;
+			end;
+		end;
+	end;
+	
 return;
 end;
 
