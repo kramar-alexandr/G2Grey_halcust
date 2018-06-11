@@ -29,6 +29,8 @@ external inner procedure GetFullCurncyRate (var string,Date,var val,var val,var 
 external inner procedure GetCurUser(var record UserVc);
 external updating procedure WalkInSubProjects(string,string,integer,string,var boolean);
 external function boolean OnlySpaceBars(string);
+external inner function boolean ChechDocType(string);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 11 June 2018 10:05:54
+
 // Edit Start ---------------------------------------------- Edit Start
 	//Friday, 30 November 2012 11:31:37
 	// Edit Start ---------------------------------------------- Edit Start
@@ -589,10 +591,10 @@ global // расширение функционала - есть иннер
 updating function LongInt VIVcRecordCheck(record VIVc VIp,record VIVc VI2p,LongInt stat,LongInt long4)
 BEGIN
   LongInt res;
-  boolean TrHr;
+  boolean TrHr,transf;
   record VIVc VIr;
   row VIVc VIrw;
-  Integer i,mtrw,pos;
+  Integer i,mtrw,pos,insertmode,updatemode;
   string 10 curus,tstr;
   string 60 cursign;
   string 1 ch;
@@ -600,7 +602,9 @@ BEGIN
   string 200 newobjstr;
   record ObjVc Objr;
   
-   res = 0;
+  res = 0;
+	insertmode = 1;//Rs_insert
+  updatemode = 2;//Rs_update
 	if nonblank(VIp.InvoiceNr) then begin
 		if OnlySpaceBars(VIp.InvoiceNr) then begin
 			res=-1;
@@ -628,9 +632,9 @@ BEGIN
 		RecordCheckError(1058,"",-1,"InvoiceNr");        
 		goto LVIVcRecordCheck;	
 	end;
-    if VIp.OKFlag==0 and VI2p.OKFlag==1 then begin
-       VIp.PrelBook=0;
-    end;
+	if VIp.OKFlag==0 and VI2p.OKFlag==1 then begin
+		 VIp.PrelBook=0;
+	end;
   // Edit Start ---------------------------------------------- Edit Start
 	//Wednesday, 4 April 2018 15:23:24
 	
@@ -673,7 +677,29 @@ BEGIN
 	  matrowput(VIp,i,VIrw);
 	end;  
 	
-    
+	transf = false;
+  if (VIp.OKFlag==1) then begin
+    if (stat==insertmode) then begin transf = true; end;
+    if (stat==updatemode) then begin
+      if (VI2p.OKFlag==0) then begin transf = true; end;
+    end;
+  end;
+	
+	if(transf)then begin
+		if(blank(VIp.DocumentType))then begin
+			res=-1;
+			RecordCheckError(1058,"",-1,"DocumentType");        
+			goto LVIVcRecordCheck;
+		end;
+	end;
+	if(nonblank(VIp.DocumentType))then begin
+		if(ChechDocType(VIp.DocumentType)==false)then begin
+			res=-1;
+			RecordCheckError(1290,"",-1,"DocumentType");        
+			goto LVIVcRecordCheck;
+		end;
+	end;
+  
 	// Edit End ---------------------------------------------- Edit End
 	
 	if res!=-1 then begin
