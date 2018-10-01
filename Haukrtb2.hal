@@ -94,7 +94,10 @@ begin
   BrowseSubsetButton(-40,-15);
   EndWindow;
 
-
+	WindowBegin("Визначте головний проект",PR_SBSClass,CGother,HBlRecType);
+  SetWRect(240,80,700,498);
+  	StringList(9,9,-20,-10);
+  EndWindow;
 
 
  

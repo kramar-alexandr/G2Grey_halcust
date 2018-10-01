@@ -133,6 +133,7 @@ prcnt=prcnt+1;
       OutString(40,0,"-",false); //2
       OutString(80,0,"-",false); //3
       OutString(130,0,"-",false); //4
+      OutString(150,0,PRr.PRClass,false);//4,5
       OutString(180,0,type,false); //5
       OutString(240,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:46
       //OutString(300,0,PRr.Name,false); // cur
@@ -146,6 +147,7 @@ prcnt=prcnt+1;
       OutString(135,0,"-",false); //3
       OutString(280,0,"-",false); //4
       OutString(290,0,"-",false); //4
+      OutString(150,0,PRr.PRClass,false); //5
       OutString(180,0,type,false); //5
       OutString(220,0,"",false); //5
       OutString(240,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:57
@@ -221,6 +223,7 @@ prcnt=prcnt+1;
       end else begin
         OutString(240,0,seniorpr[cntlvl-4],false); //5
       end;*/
+      OutString(150,0,PRr.PRClass,false);
       OutString(180,0,type,false); //5// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:36:58
       
       if mode==1 then begin
@@ -323,7 +326,8 @@ res=true;
   if ((RepSpec.flags[12]==0) and (PRr.Type==2)) then begin res=false; goto LCheckIsProject; end;
   
 	if(nonblank(RepSpec.f4) and RepSpec.f4!=PRr.Text0)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:30:19
-  
+  if(nonblank(RepSpec.f5) and RepSpec.f5!=PRr.MotherCode)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 16 August 2018 14:18:00
+
 LCheckIsProject:;
 CheckIsProject=res;
   return;
@@ -432,6 +436,7 @@ begin
       OutString(120,0,"Найменування 3",false); //3
       OutString(190,0,"Рівень 4",false); //4
       OutString(200,0,"Найменування 4",false); //4
+      OutString(210,0,"№",false); //5
       OutString(225,0,"Тип",false); //5
       OutString(230,0,"",false); //5
       OutString(265,0,"Текст",false); //6
@@ -447,6 +452,7 @@ begin
       OutString(40,0,"| 2 |",false);  //2
       OutString(80,0,"| 3 |",false);  //3
       OutString(130,0,"| 4 |",false);  //4
+      OutString(150,0,"№",false);  //5
       OutString(180,0,"Тип",false);  //5
       OutString(240,0,"Текст",false);  //6
       OutString(300,0,"Найменування",false); // cur

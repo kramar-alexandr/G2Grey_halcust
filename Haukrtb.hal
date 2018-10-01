@@ -387,6 +387,8 @@ begin
   EditFieldTL(h,v+=20, 150,"Тип",   M4UStr,Normal,5,FirstAcc,false,PRClassSClass);
   EditFieldTL(h,v+=20, 150,"Продавець",   M4UStr,Normal,10,LastAcc,false,UserSClass);
   EditFieldTL(h,v+=20, 150,"Текст",M4Str,Normal,100,f4,false,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:23:08
+  EditFieldTL(h,v+=20, 150,"Старший",M4Str,Normal,100,f5,false,PR_SBSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 16 August 2018 14:16:15
+ 	
  /* ButtonFrame(h=60,vm=(v+=41),133,3,"Функція");// 62
   RadioButton(h,v,0,0,"докладний",ArtMode);
   RadioButton(h,v+=16,1,0,"зведений",ArtMode);

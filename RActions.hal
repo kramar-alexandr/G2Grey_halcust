@@ -30,6 +30,7 @@ external inner procedure GetCurUser(var record UserVc);
 external updating procedure WalkInSubProjects(string,string,integer,string,var boolean);
 external function boolean OnlySpaceBars(string);
 external inner function boolean ChechDocType(string);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 11 June 2018 10:05:54
+external inner procedure M4PadString(string,Integer,string,Boolean,var string);
 
 // Edit Start ---------------------------------------------- Edit Start
 	//Friday, 30 November 2012 11:31:37
@@ -1491,6 +1492,30 @@ begin
 		end;
 		
 		NextImportLine(true);
+	end;
+
+return;
+end;
+
+
+
+global procedure CountSBProd(array string list,var integer acnt)
+begin
+	record PRVc PRr;
+	boolean TrHs;
+	string 255 curnrstr;
+	
+	PRr.PRClass = "SB";
+	TrHs = true;
+	while(loopkey("PRClass",PRr,1,TrHs))begin
+		if(PRr.PRClass=="SB")then begin
+			curnrstr = "";
+			M4PadString(PRr.Code,40," ",false,curnrstr);
+			list[acnt] = curnrstr & "  " & PRr.PRClass & "  " & PRr.Name;
+			acnt = acnt + 1;
+		end else begin
+			TrHs = false;
+		end;
 	end;
 
 return;
