@@ -712,6 +712,14 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   SearchField("Пошук");
   EndWindow;  
   
+  WindowBegin("Наявність документів",DocumentsFlagSCLass,CGother,-);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 March 2018 14:16:35
+  SpawnClass(DocumentTypeDClass);
+  SetWRect(10,80,640,298);
+  Sizeable(-1,-1,0,0);
+  StringList(9,9,-23,-10);
+  SearchField("Пошук");
+  EndWindow;  
+  
     WindowBegin("Тип документу",DocumentTypeLClass,CGmlist,-);
   SpawnClass(DocumentTypeDClass);
   SetWRect(10,80,640,298);

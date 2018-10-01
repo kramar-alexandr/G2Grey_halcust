@@ -266,7 +266,7 @@ begin
   EditField(h2,v=vm,135,"Посилання",Normal,OurContact,false,0);
   EditField(h3+50,v,50,"Продавець",Normal,SalesMan,false,UserSClass);
   EditField(h3+50,v+20,70,"Тип документу",Normal,DocumentType,false,DocumentTypeSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 March 2018 14:13:00
-  EditField(h3+50,v+20,70,"Наявн. докум.",Normal,DocumentsFlag,false,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 24 September 2018 14:57:33
+  EditField(h3+50,v+40,70,"Наявн. докум.",Normal,DocumentsFlag,false,DocumentsFlagSCLass);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 24 September 2018 14:57:33
 
 //  ColourPushButton(-100,v,-20,v+60,"TestIVDClassCardData","Test" & chr(10) & "CardData",4);
   EditField(h2,v+=vs, 135,"Конт. особа",Normal,ClientContact,false,ContactSClass);
@@ -1873,7 +1873,8 @@ RlColKey(-170,-170, "Проект",PRCode,true,PRCode);// добавление столбца ѕроект //
    EditFieldTL(h,v+=vs,250,"Офіційний номер",M4UStr,Normal,41,f6,false,0);
    EditFieldTL(h,v3=(v+=vs),50,"Мін. сума",M4Val,Normal,0,vals0,false,0);
    EditFieldTL(h,v3=(v+=vs),50,"Тип документу",M4UStr,Normal,25,f9,false,DocumentTypeSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 21 May 2018 13:57:55
-
+	 EditFieldTL(h,v3=(v+=vs),50,"Наявн. докум.",M4Str,Normal,25,f10,false,DocumentsFlagSCLass);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 1 October 2018 18:28:31
+	
    ButtonFrame(h=320,v=vm+10,123,5,"Статус");
    CheckBox(h,v,0,"незатверджені",flags[1]);
    CheckBox(h,v+=16,0,"затверджені",flags[2]);

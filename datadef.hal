@@ -2223,6 +2223,7 @@ begin
   RecordField(TaxMatrix,M4PackedMatrix,0,TaxMatrixVc);// 6.2
   RecordField(OperType,M4Code,10,0);// 6.2
 	RecordField(DocumentType,M4Code,20,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 March 2018 14:12:18
+ 	RecordField(DocumentsFlag,M4Str,20,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 24 September 2018 14:55:35
   MainKeyBegin(SerNr,1);
   StoreInBaseKey;
   AppendFieldToKeyName(SalesGroup);
