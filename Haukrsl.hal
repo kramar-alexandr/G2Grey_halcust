@@ -1851,7 +1851,7 @@ RlColKey(-170,-170, "Проект",PRCode,true,PRCode);// добавление столбца ѕроект //
   
 
    WindowBegin("Визначте журнал актів/накладних",IVJRClass,CGRcW,RcType);
-   SetWRect(20,80,520,390);
+   SetWRect(20,80,520,420);
    vs = 20;
    hs=148;
    Tile(0,20,false,"",f1);
