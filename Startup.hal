@@ -86,7 +86,9 @@ begin
 	Setting("Поля, що задає користувач - Товари",INUserLabelTClass,modSL);
 	Report("TSRowRn",PurOrdJRClass,TSRowRn,0,modSL);
 	
-	Import("Востановить линки контрактов",0,GetLinksIn,modSL);
+	Import("Востановить линки контрактов",GetLinksIn,GetLinksIn,modSL);
+	
+	Import("Імпорт проектів",ImportProjectsIClass,ImportProjectsIn,modTS);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 29 January 2019 15:05:53
 	
 	Setting("Коди податкових кредитів",VICredRowsLClass,modPL);
 	Setting("Коди податкових забов'язань",IVDebRowsLClass,modSL);

@@ -34,6 +34,7 @@ begin
   //RlColKey(261,261,"Стадія",PRStage,false,TSPRStage);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 April 2018 13:08:38
   RlColKey(131,131,"Опис",Name,false,TSName);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 18 April 2018 19:36:15
   SearchField("Пошук");
+  BrowseSubsetButton(-40,-15);
   EndWindow;
   
   WindowBegin("Визначте проект",PRTSQTSClass,CGslist,-);

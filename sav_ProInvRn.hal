@@ -459,11 +459,12 @@ end;
 procedure PrintProjectOrders(string prcode)
 begin
   record ORVc ORr;
-  
+  record IPVc IPr;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 9 November 2018 16:47:48
   Boolean found;
   Boolean prf;
   val totinv, totinv2,open,open2;  
-  boolean testf;
+  boolean testf,TrHs,printff;
+  record ARPayVc ARPayr;
   
   found = true;
   prf = false;
@@ -504,6 +505,40 @@ begin
       open2 = open2 + (ORr.Sum4-open);
       EndFormat;
    end; 
+   // Edit Start ---------------------------------------------- Edit Start
+	//Monday, 12 November 2018 17:07:23
+	
+   /*ARPayr.OrderNr = ORr.SerNr;
+   TrHs = true;
+   printff = true;
+   while(loopkey("OrderNr",ARPayr,1,TrHs))begin
+   	if(ARPayr.OrderNr!=ORr.SerNr)then begin TrHs = false; end;
+   	
+   	if(TrHs)then begin
+   		if(printff)then begin
+				StartFormat(15);
+					OutString(0,0,USetStr(1876),false); // Џередплати постачальникам
+				EndFormat;
+				StartFormat(15);
+					OutString(0,0,USetStr(15999),false); // платеж
+					OutString(100,0,USetStr(6763),false); // дата
+					OutString(270,0,USetStr(1816),true); // замовлення
+					OutString(410,0,USetStr(7258),true); // суми з ПДВ
+				EndFormat;
+				printff = false;
+			end;				
+			StartFormat(15);
+				OutString(0,"DblIPVc",ARPayr.IPNr,false); // платеж
+				OutString(100,0,ARPayr.PayDate,false); // дата
+				OutString(270,0,ARPayr.CUPNr,true); // замовлення
+				OutString(410,0,ARPayr.RVal,true); // суми з ПДВ
+			EndFormat;
+   	end;
+   end;
+   resetloop(ARPayr);*/
+   
+	// Edit End ---------------------------------------------- Edit End
+	
   end;
   if (totinv>0) or (totinv2>0) or (open2>0) then begin
 	Gray_Divider(0,1);
@@ -513,6 +548,10 @@ begin
 	OutVal(390,0,totinv2,M4Val,true);
 	OutVal(1,0,open2,M4Val,true);
 	EndFormat;
+	
+	
+	
+	
   end;
   return;
 end; 
@@ -689,6 +728,76 @@ begin
 				OutString(0,"dblOPVc",OPr.SerNr,false); // платеж
 				OutString(100,0,OPr.PayDate,false); // дата
 				OutString(270,"dblPOVc",POr.SerNr,true); // замовлення
+				OutString(410,0,OPrw.RecVal,true); // суми з ПДВ
+				totinv = totinv + OPrw.RecVal;
+				//totinv2 = totinv2 + VIr.PayVal;
+				EndFormat;
+			end;
+		end;
+   end; 
+  end;
+  if totinv>0 then begin
+	Gray_Divider(0,1);
+	StartFormat(15);
+	OutString(0,0,USetStr(6803),false);
+	OutVal(410,0,totinv,M4Val,true);
+	EndFormat;
+  end;
+  return;
+end; 
+
+
+
+//============== печать платежей по заказам поставщикам
+
+procedure PrintProjectIPs(string prcode)
+begin
+  record IPVc OPr;
+  row IPVc OPRw;
+  record ORVc ORr;
+  row ORVc ORrw;
+  
+  
+  Boolean found;
+  Boolean prf;
+  val totinv, totinv2,open,open2;  
+  boolean testf;
+  integer i,k;
+  
+  found = true;
+  prf = false;
+  StartFormat(15);
+  EndFormat;
+
+  OPr.OKFlag = 1;
+  while (LoopKey("OKFlagTransDate",OPr,1,found)) begin
+   if (OPr.OKFlag==0) then begin found=false; end;
+	if (found) then begin
+		for (i=0;i<matrowcnt(OPr);i=i+1) begin
+			testf = false;
+			matrowget(OPr,i,OPrw);
+			if ((OPrw.CUPNr<>-1)) and (OPrw.OrderNr<>-1) then begin
+				ORr.SerNr = OPrw.OrderNr;
+				if (readfirstmain(ORr,1,true)) then begin end;
+				if (ORr.PRCode==prcode) then begin testf= true; end;
+			end;
+			if (testf) then begin
+				if (prf==false) then begin
+				   StartFormat(15);
+					OutString(0,0,USetStr(1876),false); // Џередплати постачальникам
+					EndFormat;
+					StartFormat(15);
+					OutString(0,0,USetStr(15999),false); // платеж
+					OutString(100,0,USetStr(6763),false); // дата
+					OutString(270,0,USetStr(1816),true); // замовлення
+					OutString(410,0,USetStr(7258),true); // суми з ПДВ
+					EndFormat;
+					prf = true;
+				end;
+				StartFormat(15);
+				OutString(0,"dblIPVc",OPr.SerNr,false); // платеж
+				OutString(100,0,OPr.TransDate,false); // дата
+				OutString(270,"dblORVc",ORr.SerNr,true); // замовлення
 				OutString(410,0,OPrw.RecVal,true); // суми з ПДВ
 				totinv = totinv + OPrw.RecVal;
 				//totinv2 = totinv2 + VIr.PayVal;
@@ -1117,6 +1226,8 @@ begin
 	 PrintProjectVIs(RepSpec.f1); // 62
 	 PrintProjectPOs(RepSpec.f1); // 62
 	 PrintProjectPOsList(RepSpec.f1); // 62
+	 
+	 PrintProjectIPs(RepSpec.f1);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 12 November 2018 17:48:25
   end; 
   EndJob;
   return;

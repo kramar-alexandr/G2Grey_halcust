@@ -42,6 +42,7 @@ end;
 event DefineWindows
 begin
   real i,h,h1,h2,h3,h4,h5,h6,h7,v,l,vs,v2,vm,f,t,fs;
+  integer ii;
   string 255 label;
 record USerVc USr;
   SetLangMode(LangUkrainian,"UKR",0);
@@ -1542,6 +1543,52 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   SetWRect(240,80,600,298);
   StringList(9,9,-20,-10);
   EndWindow;
-		
+	
+	
+	
+
+  WindowBegin("Імпорт проектів",ImportProjectsIClass,CGIcW,-);
+  SetWRect(20,80,470,680);
+  ii=1; //номер колонки
+  h=10;  v=15;
+  StaticText(h,v,"Формат імпорту",false);
+  h=20;  v=40;
+  StaticText(h,v,"Файл імпорту: текстовий документ з роздільником стовбчиків TAB",false);
+  v=v+30; vs=25;
+  StaticText(h,v,"Всі стовбчики обов'язкові",false);
+  v=v+30; vs=25;
+  StaticText(h,v,"Список колонок:",false);
+  v=v+30; vs=25;
+  StaticText(h,v,ii & ". Код проекту",false);
+	 ii=ii+1;
+  StaticText(h,v+=vs,ii & ". Код клієнта",false);
+	 ii=ii+1;
+  StaticText(h,v+=vs,ii & ". Код старшого проекту",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Опис",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Текст (вкладка Текст)",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Тип",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Фаза",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Текст (вкладка Умови)",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Менеджер 1/Продавець (вкладка Учасники)",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Контактна особа",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Дата закінчення",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Валюта",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & ". Група продажу",false);
+	 ii=ii+1;
+  h=10;
+  StaticText(h,v+=45,"Всі стовбці розділені <Tab>",false);
+  EndWindow;
+
+	
 return;
 end;

@@ -734,44 +734,107 @@ begin
   KeySegment(PRClass);
   KeySegment(MotherCode);
   KeySegment(Code);
-  KeyBegin(ProjType);			// was added
+  
+  SubsetKeyBegin2(ProjType);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(ProjType);
   KeySegment(Code);
-  KeyBegin(Ident);			// was added
+  
+  SubsetKeyBegin2(Ident);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(Ident);
   KeySegment(Code);
-  KeyBegin(IdentProjType);			// was added
+  
+  SubsetKeyBegin2(IdentProjType);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(Ident);
   KeySegment(ProjType);
   KeySegment(Code);
   
-  KeyBegin(TSCode);			// was added
+  SubsetKeyBegin2(TSCode);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(Code);
-  KeyBegin(TSMotherCode);			// was added
+  
+  SubsetKeyBegin2(TSMotherCode);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(MotherCode);
   KeySegment(Code);
-  KeyBegin(TSPRClass);			// was added
+  
+  SubsetKeyBegin2(TSPRClass);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(PRClass);
   KeySegment(Code);
-  KeyBegin(TSPRStage);			// was added
+  
+  SubsetKeyBegin2(TSPRStage);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(PRStage);
   KeySegment(Code);
-  KeyBegin(TSName);			// was added
+  
+  SubsetKeyBegin2(TSName);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(Name);
   KeySegment(Code);
  
- KeyBegin(QTCode);			// was added
+ 	SubsetKeyBegin2(QTCode);			// was added
+ 	StoreInBaseKey;
+ 	AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(Code);
-  KeyBegin(QTMotherCode);			// was added
+  
+  SubsetKeyBegin2(QTMotherCode);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(MotherCode);
   KeySegment(Code);
-  KeyBegin(QTPRClass);			// was added
+  
+  SubsetKeyBegin2(QTPRClass);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(PRClass);
   KeySegment(Code);
-  KeyBegin(QTPRStage);			// was added
+  
+  SubsetKeyBegin2(QTPRStage);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(PRStage);
   KeySegment(Code);
-  KeyBegin(QTName);			// was added
+  
+  SubsetKeyBegin2(QTName);			// was added
+  StoreInBaseKey;
+  AppendListFieldToKeyName(SalesGroup);
+  AppendListFieldToKeyName(PrSalesMan);
+  AppendListFieldToKeyName(Members);
   KeySegment(Name);
   KeySegment(Code);
   EndRecord;
