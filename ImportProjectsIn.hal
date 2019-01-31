@@ -17,6 +17,9 @@ begin
 	string 100 newprcode,tstr,mainprcode,year,prstr,number,warn;
 	integer pos,prlen,prcount,gotocnt;
 	boolean TrHs;
+	date bldate,truedate;
+	
+	SetImportCodePage("WINDOWS-1251");
 	
 	while (TestEOF()==false) begin
 		
@@ -34,6 +37,8 @@ begin
 		data = ImportField;
 		curncy = ImportField;
 		salesgroup = ImportField;
+		
+		truedate = bldate;
 		
 		if(blank(prcode))then begin
 			goto lSkipRow;
@@ -90,7 +95,9 @@ begin
 			goto lSkipRow;
 		end;
 		
-		
+		truedate.year = stringtoint(right(data,4));
+		truedate.day = stringtoint(left(data,2));
+		truedate.month = stringtoint(mid(data,4,2));
 		
 		pos = 0;
 		ExtractObjWithSeparator("-",prcode,true,pos,mainprcode);
@@ -164,9 +171,10 @@ lAddNewNumber:;
 		newPRr.Contact = contact;
 		PRVc_PasteContact(newPRr);
 		newPRr.StartDate = currentdate;
-		newPRr.EndDate = stringtodate(data);
+		newPRr.EndDate = truedate;
 		newPRr.CurncyCode = curncy;
 		newPRr.SalesGroup = salesgroup;
+		newPRr.PRClassification = "ATL";
 		if(recordinsert(newPRr,true))then begin
 			Objr.Code = newPRr.Code;
 			if(readfirstmain(Objr,1,true))then begin
