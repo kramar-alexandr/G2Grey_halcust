@@ -13,7 +13,7 @@ begin
 	string 100 prcode,cucode,mother;
 	string 100 comment,text,type;
 	string 100 faza,text1,user;
-	string 100 contact,data,curncy,salesgroup;
+	string 100 contact,data,curncy,salesgroup,class;
 	string 100 newprcode,tstr,mainprcode,year,prstr,number,warn;
 	integer pos,prlen,prcount,gotocnt;
 	boolean TrHs;
@@ -37,6 +37,7 @@ begin
 		data = ImportField;
 		curncy = ImportField;
 		salesgroup = ImportField;
+		class = ImportField;
 		
 		truedate = bldate;
 		
@@ -174,7 +175,7 @@ lAddNewNumber:;
 		newPRr.EndDate = truedate;
 		newPRr.CurncyCode = curncy;
 		newPRr.SalesGroup = salesgroup;
-		newPRr.PRClassification = "ATL";
+		newPRr.PRClassification = class;
 		if(recordinsert(newPRr,true))then begin
 			Objr.Code = newPRr.Code;
 			if(readfirstmain(Objr,1,true))then begin
@@ -188,7 +189,9 @@ lAddNewNumber:;
 				recordstore(Objr,true);
 				newPRr.Objects = Objr.Code;
 			end;
-			recordstore(newPRr,true);
+			recordinsert(newPRr,true);
+			//recordstore(newPRr,true);
+			//recordupdate(newPRr,newPRr,true);
 		end;
 		logtext(0,newPRr.Code);
 				

@@ -388,19 +388,22 @@ begin
   EditFieldTL(h,v+=20, 150,"Продавець",   M4UStr,Normal,10,LastAcc,false,UserSClass);
   EditFieldTL(h,v+=20, 150,"Текст",M4Str,Normal,100,f4,false,0);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:23:08
   EditFieldTL(h,v+=20, 150,"Старший",M4Str,Normal,100,f5,false,PR_SBSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 16 August 2018 14:16:15
- 	
+ 	EditFieldTL(h,v+=20, 70,"Період завершення",M4Date,Normal,20,sStartDate,false,0);
+ 	EditFieldTL(h+100,v, 70,"до",M4Date,Normal,20,sEndDate,false,0);
+ 	EditFieldTL(h,v+=20, 70,"Період попер.завер.",M4Date,Normal,20,d1,false,0);
+ 	EditFieldTL(h+100,v, 70,"до",M4Date,Normal,20,d2,false,0);
+
  /* ButtonFrame(h=60,vm=(v+=41),133,3,"Функція");// 62
   RadioButton(h,v,0,0,"докладний",ArtMode);
   RadioButton(h,v+=16,1,0,"зведений",ArtMode);
   RadioButton(h,v+=16,2,0,"зведений з найм.",ArtMode);*/// 62
-  v=160;
+  v=200;
   ButtonFrame(h=30,v,155,3,"Статус проектів");// 62
-  CheckBox(h,v,0,"активні проекти",flags[19]);
-  CheckBox(h,v+=16,0,"завершені проекти",flags[20]);
+  CheckBox(h,v,0,"Активні проекти",flags[19]);
+  CheckBox(h,v+=16,0,"Завершені проекти",flags[20]);
   CheckBox(h,v+=16,0,"Попередньо завершений",flags[21]);// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 10 May 2018 17:18:28
-	
 	h=220;
-	v=160;
+	v=200;
   ButtonFrame(h,v,133,3,"Вид проекту");
   CheckBox(h,v,0,"оплачувані",flags[10]);
   CheckBox(h,v+=18,0,"внутрішні",flags[11]);
@@ -650,7 +653,7 @@ begin
   SetBlid(PRClassBlock);
   SetWRect(64,80,542,298);
   Sizeable(-1,-1,0,0);
-  MatrixBegin(4,27,-50,-20,PRClassRowType,99);
+  MatrixBegin(4,27,-50,-20,PRClassRowType,299);
   Flip(0);
   MatCol(1,32,"Код",0,Code,false,0);
   MatCol(1,71,"Об'єкт",0,DefObject,false,ObjSClass);

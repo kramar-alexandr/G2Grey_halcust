@@ -30,6 +30,7 @@ BEGIN
     if (FEVI2r.OKFlag!=0) then begin
       switch (fieldname) begin
         case "LangCode": ;
+        case "CredRow": ;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 1 March 2019 16:14:14
         otherwise goto LFEVIDClassActiveEditField;
       end;
     end;  

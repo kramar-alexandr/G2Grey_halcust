@@ -168,9 +168,14 @@ prcnt=prcnt+1;
         OutString(416,0,"-",false);
       end;
       if nonblankdate(PRr.EndDate) then begin
-      OutDate(417,0,PRr.EndDate,false);
+      	OutDate(417,0,PRr.EndDate,false);
       end else begin
         OutString(417,0,"-",false);
+      end;
+      if nonblankdate(PRr.PreFinishedDate) then begin
+      	OutDate(427,0,PRr.PreFinishedDate,false);
+      end else begin
+        OutString(427,0,"-",false);
       end;
     end;
     SerchQTbyProject(PRr.Code,qtnr,foundf);
@@ -252,9 +257,14 @@ prcnt=prcnt+1;
           OutString(416,0,"-",false);
         end;
         if nonblankdate(PRr.EndDate) then begin
-        OutDate(417,0,PRr.EndDate,false);
+        	OutDate(417,0,PRr.EndDate,false);
         end else begin
           OutString(417,0,"-",false);
+        end;
+        if nonblankdate(PRr.PreFinishedDate) then begin
+        	OutDate(427,0,PRr.PreFinishedDate,false);
+        end else begin
+          OutString(427,0,"-",false);
         end;
       end;
       SerchQTbyProject(PRr.Code,qtnr,foundf);
@@ -275,6 +285,7 @@ function Boolean CheckIsProject(record PRVc PRr,record RcVc RepSpec,string frpr,
 begin
 Boolean res;
 boolean flagfnd;// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 14 May 2018 15:26:51
+date bd;
 
 res=true;
   if PRr.ProjType==3 then begin
@@ -327,7 +338,18 @@ res=true;
   
 	if(nonblank(RepSpec.f4) and RepSpec.f4!=PRr.Text0)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:30:19
   if(nonblank(RepSpec.f5) and RepSpec.f5!=PRr.MotherCode)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 16 August 2018 14:18:00
-
+	
+	if(RepSpec.sStartDate!=bd and RepSpec.sEndDate!=bd)then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 16 April 2019 12:53:03
+		if(DateInRange(PRr.EndDate,RepSpec.sStartDate,RepSpec.sEndDate)==false)then begin
+			res=false; goto LCheckIsProject;
+		end;
+	end;
+	if(RepSpec.d1!=bd and RepSpec.d2!=bd)then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 16 April 2019 12:53:05
+		if(DateInRange(PRr.PreFinishedDate,RepSpec.d1,RepSpec.d2)==false)then begin
+			res=false; goto LCheckIsProject;
+		end;
+	end;
+	
 LCheckIsProject:;
 CheckIsProject=res;
   return;
@@ -445,6 +467,7 @@ begin
       OutString(415,0,USetStr(4863),false);
       OutString(416,0,"Дата початку",false);
       OutString(417,0,"Дата завершення",false);
+      OutString(427,0,"Дата попереднього завершення",false);
       OutString(1,0,"Cost estimate",true);
       mode=1;
     end else begin
