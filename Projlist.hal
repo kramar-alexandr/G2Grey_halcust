@@ -172,6 +172,11 @@ prcnt=prcnt+1;
       end else begin
         OutString(417,0,"-",false);
       end;
+      if nonblankdate(PRr.FinishedDate) then begin
+      	OutDate(427,0,PRr.FinishedDate,false);
+      end else begin
+        OutString(427,0,"-",false);
+      end;
       if nonblankdate(PRr.PreFinishedDate) then begin
       	OutDate(427,0,PRr.PreFinishedDate,false);
       end else begin
@@ -261,6 +266,11 @@ prcnt=prcnt+1;
         end else begin
           OutString(417,0,"-",false);
         end;
+        if nonblankdate(PRr.FinishedDate) then begin
+        	OutDate(427,0,PRr.FinishedDate,false);
+        end else begin
+          OutString(427,0,"-",false);
+        end;
         if nonblankdate(PRr.PreFinishedDate) then begin
         	OutDate(427,0,PRr.PreFinishedDate,false);
         end else begin
@@ -340,7 +350,7 @@ res=true;
   if(nonblank(RepSpec.f5) and RepSpec.f5!=PRr.MotherCode)then begin res=false; goto LCheckIsProject; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Thursday, 16 August 2018 14:18:00
 	
 	if(RepSpec.sStartDate!=bd and RepSpec.sEndDate!=bd)then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 16 April 2019 12:53:03
-		if(DateInRange(PRr.EndDate,RepSpec.sStartDate,RepSpec.sEndDate)==false)then begin
+		if(DateInRange(PRr.FinishedDate,RepSpec.sStartDate,RepSpec.sEndDate)==false)then begin
 			res=false; goto LCheckIsProject;
 		end;
 	end;
