@@ -117,6 +117,7 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   SetWRect(20,80,380,300);
   v = 6; vs = 20; h = 120;
   EditFieldTL(h+5,v, 150,"Співробітник",   M4UStr,Normal,60,f1,false,UserSClass);
+  EditFieldTL(h+5,v+=vs, 150,"Проект",   M4UStr,Normal,60,f2,false,PRSClass);
   PeriodField(h+5,v+=vs,"Період");
   ButtonFrame(h=45,v+=40,200,4,"Відображати");
   RadioButton(h,v,0,0,"затверджені табелі",flags[1]);

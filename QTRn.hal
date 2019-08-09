@@ -598,12 +598,12 @@ return;
 end;
 
 
-procedure PrintTS(string user,date da1,date da2,integer mark,var val qty,integer funk,var boolean foundf)
+procedure PrintTS(record RcVc RepSpec,string user,date da1,date da2,integer mark,var val qty,integer funk,var boolean foundf)
 begin
 
 record TSVc TSr;
 row TSVc TSrw;
-boolean TrHs,testf;
+boolean TrHs,testf,prflag;
 Integer i;
 
 foundf=false;
@@ -621,19 +621,24 @@ while LoopKey("UserCode",TSr,1,TrHs) begin
 		i=0;
 		while(i<MatRowCnt(TSr)) begin
 			MatRowGet(TSr,i,TSrw);
-			if TSrw.date>=da1 and  TSrw.date<=da2 then begin
-				if funk==1 then begin
-					foundf=true;
-					StartFormat(20);
-					OutString(2,0,TSr.SerNr,false);
-					OutString(3,0,TSrw.date,false);
-					OutString(4,"DblPRVc",TSrw.PRCode,false);
-					OutString(5,"DblINVc",TSrw.ArtCode,false);
-					OutString(6,0,TSrw.Qty,false);
-					OutString(7,0,TSrw.Spec,false);
-					EndFormat;
+			prflag = true;
+			if(nonblank(RepSpec.f2) and RepSpec.f2!=TSrw.PRCode)then begin prflag = false; end;
+			
+			if(prflag)then begin
+				if TSrw.date>=da1 and  TSrw.date<=da2 then begin
+					if funk==1 then begin
+						foundf=true;
+						StartFormat(20);
+						OutString(2,0,TSr.SerNr,false);
+						OutString(3,0,TSrw.date,false);
+						OutString(4,"DblPRVc",TSrw.PRCode,false);
+						OutString(5,"DblINVc",TSrw.ArtCode,false);
+						OutString(6,0,TSrw.Qty,false);
+						OutString(7,0,TSrw.Spec,false);
+						EndFormat;
+					end;
+					qty=qty+TSrw.Qty;
 				end;
-				qty=qty+TSrw.Qty;
 			end;
 			i=i+1;  
 		end;
@@ -683,7 +688,7 @@ begin
   string 240 text,textdata;
   Integer i,rw,usfactor,mark;
   string 10 fus,lus;
-  boolean TrHs,foundf,testf, ExcelFlag,flag;
+  boolean TrHs,foundf,testf, ExcelFlag,flag,prflag;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 9 August 2019 11:35:05
   val qty;
   record TSVc TSr;
   row TSVc TSrw;
@@ -714,13 +719,18 @@ begin
 			if testf then begin
 				for (i=0;i<matrowcnt(TSr);i=i+1) begin
 					matrowget (TSr,i,TSRw);
-					if (TSRw.date>=da1) and (TSRw.date<=da2) then begin
-						OldArrayInsert(ProjectName, ProjNum, TSRw.PRCode); // в массив проектов добавляется очередной
-						if (flag) then begin
-							flag = false;
-							OldArrayInsert(UserName, UsNum, TSR.UserCode); // в массив сотрудников 1 раз за карточку добавляется очередной
-						end; //
-					end; // иф по датам диапазона
+					prflag = true;
+					if(nonblank(RepSpec.f2) and RepSpec.f2!=TSRw.PRCode)then begin prflag = false; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 9 August 2019 11:35:03
+					
+					if(prflag)then begin
+						if (TSRw.date>=da1) and (TSRw.date<=da2) then begin
+							OldArrayInsert(ProjectName, ProjNum, TSRw.PRCode); // в массив проектов добавляется очередной
+							if (flag) then begin
+								flag = false;
+								OldArrayInsert(UserName, UsNum, TSR.UserCode); // в массив сотрудников 1 раз за карточку добавляется очередной
+							end; //
+						end; // иф по датам диапазона
+					end;
 				end; // фор по строкам табеля
 			end; // фильтр по окфлаг
 		end;
@@ -811,7 +821,7 @@ begin
 				OutString(3,0,USr.Name,false);
 				qty=0;
 				mark = RepSpec.flags[1];
-				PrintTS(USr.Code,da1,da2,mark,qty,RepSpec.ArtMode,foundf);
+				PrintTS(RepSpec,USr.Code,da1,da2,mark,qty,RepSpec.ArtMode,foundf);
 				if RepSpec.ArtMode==0 then begin
 					OutString(6,0,qty,false);
 				end else begin
