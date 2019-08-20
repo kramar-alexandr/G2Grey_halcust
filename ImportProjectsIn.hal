@@ -203,3 +203,67 @@ lSkipRow:;
 	
 return;
 end;
+
+global updating procedure CloseProjectsIn()
+begin
+	record PRVc mthPRr,newPRr,oldPRr;
+	record CUVc CUr;
+	record ObjVc Objr;
+	string 100 prcode,prevclosedate,closedate;
+	date bldate,prcldate,cldate;
+	boolean changed;
+	
+	SetImportCodePage("WINDOWS-1251");
+	
+	while (TestEOF()==false) begin
+		
+		prcode = ImportField;
+		prevclosedate = ImportField;
+		closedate = ImportField;
+		changed = false;
+		
+		if(nonblank(prcode))then begin
+			prcldate = bldate;
+			cldate = bldate;
+			if(nonblank(prevclosedate))then begin
+				prcldate.year = stringtoint(right(prevclosedate,4));
+				prcldate.day = stringtoint(left(prevclosedate,2));
+				prcldate.month = stringtoint(mid(prevclosedate,4,2));
+			end;
+			if(nonblank(closedate))then begin
+				cldate.year = stringtoint(right(closedate,4));
+				cldate.day = stringtoint(left(closedate,2));
+				cldate.month = stringtoint(mid(closedate,4,2));
+			end;
+		
+		
+			oldPRr.Code = prcode;
+			if(readfirstmain(oldPRr,1,true))then begin
+				recordcopy(newPRr,oldPRr);
+				if(nonblankdate(prcldate) and blankdate(oldPRr.PreFinishedDate))then begin
+					oldPRr.PreFinishedDate = prcldate;
+					if(oldPRr.Terminated==0 or oldPRr.Terminated==2)then begin
+						oldPRr.Terminated = 3;
+					end;
+					changed = true;
+				end;
+				if(nonblankdate(cldate) and blankdate(oldPRr.FinishedDate))then begin
+					oldPRr.FinishedDate = cldate;
+					if(oldPRr.Terminated!=1)then begin
+						oldPRr.Terminated = 1;
+					end;
+					changed = true;
+				end;
+				
+				if(changed)then begin
+					logtext(0,"CloseProjectsIn for project " & oldPRr.Code & " FinishedDate = " & oldPRr.FinishedDate & " PreFinishedDate = " & oldPRr.PreFinishedDate);
+					recordupdate(newPRr,oldPRr,true);
+				end;
+			end;
+		
+		end;
+		NextImportLine(true);
+	end;
+	
+return;
+end;

@@ -1589,6 +1589,31 @@ WindowBegin("Табелі часу",TSReportRClass,CGRcW,RcType);
   h=10;
   StaticText(h,v+=45,"Всі стовбці розділені <Tab>",false);
   EndWindow;
+  
+  WindowBegin("Закриття проектів",CloseProjectsIClass,CGIcW,-);
+  SetWRect(20,80,470,680);
+  ii=1; //номер колонки
+  h=10;  v=15;
+  StaticText(h,v,"Формат імпорту",false);
+  h=20;  v=40;
+  StaticText(h,v,"Файл імпорту: текстовий документ з роздільником стовбчиків TAB",false);
+  v=v+30; vs=25;
+  StaticText(h,v,"Всі стовбчики обов'язкові",false);
+  v=v+30; vs=25;
+  StaticText(h,v,"Список колонок:",false);
+  v=v+30; vs=25;
+  StaticText(h,v,ii & ". Код проекту",false);
+	 ii=ii+1;
+  StaticText(h,v+=vs,ii & ". Дата попереднього завершення",false);
+	 ii=ii+1;
+  StaticText(h,v+=vs,ii & ". Дата завершення",false);
+	 ii=ii+1;
+	StaticText(h,v+=vs,ii & "Якщо одна з дат не буде вказана, то вона буде проігнорована",false);
+	 ii=ii+1;
+  h=10;
+  StaticText(h,v+=45,"Всі стовбці розділені <Tab>",false);
+  EndWindow;
+
 
 	
 return;

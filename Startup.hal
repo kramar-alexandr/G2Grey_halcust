@@ -89,6 +89,7 @@ begin
 	Import("Востановить линки контрактов",GetLinksIn,GetLinksIn,modSL);
 	
 	Import("Імпорт проектів",ImportProjectsIClass,ImportProjectsIn,modTS);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 29 January 2019 15:05:53
+	Import("Закриття проектів",CloseProjectsIClass,CloseProjectsIn,modTS);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 20 August 2019 09:48:00
 	
 	Setting("Коди податкових кредитів",VICredRowsLClass,modPL);
 	Setting("Коди податкових забов'язань",IVDebRowsLClass,modSL);
