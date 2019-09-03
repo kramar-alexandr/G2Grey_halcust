@@ -175,6 +175,7 @@ begin
   StrSetText(AllowINCostModelChange,"Дозволяти зміну моделі вартості товару");
   StrSetText(AllowPOSOfflineChanging,"Дозволяти зміну накладних ЕККА офлайн ");
   StrSetText(AllowIVSerNrChange,"Дозволяти зміну номера акта/накл.");
+  StrSetText(AllowEditBancAcc,"Дозволяти зміну На рухунок банку (плат. пост.)");// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 3 September 2019 15:32:06
   StrSetText(AllowSuppInvNoChangeOKVI,"Дозволяти зміну номера акта/накл. постач. на затвердж. актах-накл.");
   StrSetText(AllowCUSerNrChange,"Дозволяти зміну номера контакта");
   StrSetText(AllowRestAccSerNrChange,"Дозволяти зміну номера замовлення");
