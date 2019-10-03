@@ -4,6 +4,7 @@ external inner procedure PRVc_PastePRClass(string,var record PRVc);
 external inner procedure PRVc_PasteLeader(var record PRVc);
 external inner procedure PRVc_PastePrSalesMan(var record PRVc,string);
 external inner procedure PRVc_PasteContact(var record PRVc);
+external updating procedure UpdateProjMn(record RcVc);
 
 global updating procedure ImportProjectsIn()
 begin
@@ -18,12 +19,14 @@ begin
 	integer pos,prlen,prcount,gotocnt;
 	boolean TrHs;
 	date bldate,truedate;
+	record RcVc RepSpec;
 	
 	SetImportCodePage("WINDOWS-1251");
 	
 	while (TestEOF()==false) begin
 		
 		prcode = ImportField;
+		logtext(0,"try importinf " & prcode);
 		cucode = ImportField;
 		mother = ImportField;
 		
@@ -48,57 +51,71 @@ begin
 		end;
 		
 		if(blank(cucode))then begin
+			logtext(0,"Row skiped blank customer");
 			goto lSkipRow;
 		end else begin
 			CUr.Code = cucode;
 			if(readfirstmain(CUr,1,true)==false)then begin
+				logtext(0,"Row skiped not customer");
 				goto lSkipRow;
 			end;
 		end;
 		
 		if(blank(mother))then begin
+			logtext(0,"Row skiped blank mother");
 			goto lSkipRow;
 		end else begin
 			mthPRr.Code = mother;
 			if(readfirstmain(mthPRr,1,true)==false)then begin
+				logtext(0,"Row skiped not mother");
 				goto lSkipRow;
 			end;
 		end;
 		
 		if(blank(comment))then begin
+			logtext(0,"Row skiped blank comment");
 			goto lSkipRow;
 		end;
 		if(blank(text))then begin
+			logtext(0,"Row skiped blank text");
 			goto lSkipRow;
 		end;
 		if(blank(type))then begin
+			logtext(0,"Row skiped blank type");
 			goto lSkipRow;
 		end;
 		if(blank(faza))then begin
+			logtext(0,"Row skiped blank faza");
 			goto lSkipRow;
 		end;
 		if(blank(text1))then begin
+			logtext(0,"Row skiped blank text1");
 			goto lSkipRow;
 		end;
 		if(blank(user))then begin
+			logtext(0,"Row skiped blank user");
 			goto lSkipRow;
 		end;
 		if(blank(contact))then begin
+			logtext(0,"Row skiped blank contact");
 			goto lSkipRow;
 		end;
 		if(blank(data))then begin
+			logtext(0,"Row skiped blank data");
 			goto lSkipRow;
 		end;
 		if(blank(curncy))then begin
+			logtext(0,"Row skiped blank curncy");
 			goto lSkipRow;
 		end;
 		if(blank(salesgroup))then begin
+			logtext(0,"Row skiped blank salesgroup");
 			goto lSkipRow;
 		end;
 		
 		truedate.year = stringtoint(right(data,4));
 		truedate.day = stringtoint(left(data,2));
-		truedate.month = stringtoint(mid(data,4,2));
+		truedate.month = stringtoint(mid(data,3,2));
 		
 		pos = 0;
 		ExtractObjWithSeparator("-",prcode,true,pos,mainprcode);
@@ -151,6 +168,7 @@ lAddNewNumber:;
 			goto lSkipRow;
 		end;
 		
+		logtext(0,"Generate new project code " & newprcode);
 		recordnew(newPRr);
 		newPRr.Code = newprcode;
 		newPRr.CustCode = CUr.Code;
@@ -192,6 +210,8 @@ lAddNewNumber:;
 			recordstore(newPRr,true);
 			recordcopy(oldPRr,newPRr);
 			recordupdate(oldPRr,newPRr,true);
+			RepSpec.f1 = newPRr.Code;
+			UpdateProjMn(RepSpec);
 			//recordstore(newPRr,true);
 			//recordupdate(newPRr,newPRr,true);
 		end;
@@ -228,12 +248,12 @@ begin
 			if(nonblank(prevclosedate))then begin
 				prcldate.year = stringtoint(right(prevclosedate,4));
 				prcldate.day = stringtoint(left(prevclosedate,2));
-				prcldate.month = stringtoint(mid(prevclosedate,4,2));
+				prcldate.month = stringtoint(mid(prevclosedate,3,2));
 			end;
 			if(nonblank(closedate))then begin
 				cldate.year = stringtoint(right(closedate,4));
 				cldate.day = stringtoint(left(closedate,2));
-				cldate.month = stringtoint(mid(closedate,4,2));
+				cldate.month = stringtoint(mid(closedate,3,2));
 			end;
 		
 		

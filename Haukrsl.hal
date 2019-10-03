@@ -1851,13 +1851,13 @@ RlColKey(-170,-170, "Проект",PRCode,true,PRCode);// добавление столбца ѕроект //
   
 
    WindowBegin("Визначте журнал актів/накладних",IVJRClass,CGRcW,RcType);
-   SetWRect(20,80,520,420);
+   SetWRect(20,80,550,420);
    vs = 20;
    hs=148;
    Tile(0,20,false,"",f1);
    EditFieldTL(h=150,v=6, 150,"Акт/накладна №",   M4Str,Normal,30,f1,false,0);
    TileButtons(v,2);
-   Tile(1,380,false,"1",f2);
+   Tile(1,400,false,"1",f2);
    v = 6;
    PeriodField(h,vm=v,"Період");
    EditFieldTL(h,v+=vs ,150,"Клієнт",M4UStr,Normal,50,f2,false,CUSClass);
@@ -1874,7 +1874,9 @@ RlColKey(-170,-170, "Проект",PRCode,true,PRCode);// добавление столбца ѕроект //
    EditFieldTL(h,v3=(v+=vs),50,"Мін. сума",M4Val,Normal,0,vals0,false,0);
    EditFieldTL(h,v3=(v+=vs),50,"Тип документу",M4UStr,Normal,25,f9,false,DocumentTypeSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 21 May 2018 13:57:55
 	 EditFieldTL(h,v3=(v+=vs),50,"Наявн. докум.",M4Str,Normal,25,f10,false,DocumentsFlagSCLass);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 1 October 2018 18:28:31
-	
+ 	 EditFieldTL(h,v3=(v+=vs),100,"Товар",M4Str,Normal,60,f11,false,INSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 September 2019 13:57:09
+	 EditFieldTL(h,v3=(v+=vs),100,"Проект",M4Str,Normal,60,f12,false,PRSClass);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 September 2019 13:57:10
+   
    ButtonFrame(h=320,v=vm+10,123,5,"Статус");
    CheckBox(h,v,0,"незатверджені",flags[1]);
    CheckBox(h,v+=16,0,"затверджені",flags[2]);

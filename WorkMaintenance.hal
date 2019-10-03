@@ -222,7 +222,11 @@ string 20 codd;
 
 TrHs=true;
 testf=true;
+	
+	logtext(0,"UpdateProjMn");
+	PRr.Code = RepSpec.f1;
   while(LoopMain(PRr,1,TrHs)) begin
+  	if(nonblank(RepSpec.f1) and RepSpec.f1!=PRr.Code)then begin TrHs = false; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 18 September 2019 13:13:52
     if nonblank(PRr.MotherCode) then begin
     WalkInSubProjects(PRr.Code,"Nothing",2,PRr.MotherCode,testf);//TRA20
       if testf==false then begin
@@ -234,12 +238,15 @@ testf=true;
   ResetLoop(PRr);
   PRr.Code="";
   TrHs=true;
+  PRr.Code = RepSpec.f1;
   while(LoopMain(PRr,1,TrHs)) begin
+  	logtext(0,"UpdateProjMn " & PRr.Code);
+  	if(nonblank(RepSpec.f1) and RepSpec.f1!=PRr.Code)then begin TrHs = false; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 18 September 2019 13:13:52
     if blank(PRr.MotherCode) then begin
       PRr1.MotherCode=PRr.Code;
       if ReadFirstKey("MotherCode",PRr1,1,true) then begin
-      PRr.ProjType=0;
-      PRr.Ident=PRr.Code;
+				PRr.ProjType=0;
+				PRr.Ident=PRr.Code;
       end else begin
         PRr.ProjType=3;
         PRr.Ident="";
@@ -247,15 +254,15 @@ testf=true;
     end else begin
       corrPRr.Code=PRr.MotherCode;
       if ReadFirstMain(corrPRr,1,true)==false then begin
-      MessageBox(10895, " MotherCode isn't correct: " & PRr.MotherCode & " In project - " & PRr.Code);
-      goto RingError;
+				MessageBox(10895, " MotherCode isn't correct: " & PRr.MotherCode & " In project - " & PRr.Code);
+				goto RingError;
       end;
       PRr1.MotherCode=PRr.Code;
       if ReadFirstKey("MotherCode",PRr1,1,true) then begin
-      PRr.ProjType=1;
-      codd=PRr.MotherCode;
-      lable:;
-      PRr2.Code=codd;
+				PRr.ProjType=1;
+				codd=PRr.MotherCode;
+				lable:;
+				PRr2.Code=codd;
         if ReadFirstMain(PRr2,1,true) then begin
           if nonblank(PRr2.MotherCode) then begin
           codd=PRr2.MotherCode;
@@ -284,6 +291,7 @@ testf=true;
 ResetLoop(PRr);  
 TrHs=true;
 testf=true;
+if(nonblank(RepSpec.f1))then begin TrHs = false; end;// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 18 September 2019 13:13:52
 PRr.ProjType=0;
   while(LoopKey("ProjType",PRr,1,TrHs)) begin
     if PRr.ProjType==0 then begin

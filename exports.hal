@@ -104,6 +104,9 @@ begin
 	record BankVc BNr;
 	string 255 tstr,temp;
 	array string 255 res;
+	boolean ibanfound;
+	
+	
 	
 	Cur.Code = OPRw.VECode;
 	if (ReadFirstMain(CUr,1,true)) then begin end;
@@ -124,11 +127,22 @@ begin
 	ExportPadString(tstr,len(tstr),"",true);//25
 	ExportPadString("###################",19,"",true);
 	if blank(OPRw.BankAcc) then begin
-		tstr = right(CUr.BankAccount,14);
+		if(len(OPRw.BankAcc)<29)then begin
+			tstr = right(CUr.BankAccount,14);// 14->29 Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 27 September 2019 16:32:59
+		end else begin
+			tstr = right(CUr.BankAccount,29);
+		end;
 	end else begin
-		tstr = right(OPRw.BankAcc,14);
+		if(len(OPRw.BankAcc)<29)then begin
+			tstr = right(OPRw.BankAcc,14);// 14->29 Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 27 September 2019 16:33:09
+		end else begin
+			tstr = right(OPRw.BankAcc,29);
+		end;
 	end;
-	ExportPadString(tstr,len(tstr),"",true);//44
+	if(len(tstr)==29)then begin
+		ibanfound = true;
+	end;
+	ExportPadString(tstr,len(tstr),"0",true);//44
 	ExportPadString("#",1,"",true);
 	if (BankFlag) then begin
 		ExportPadString(BNr.Name,RusLen(BNr.Name),"",true);//45	
@@ -138,7 +152,9 @@ begin
 	end;
 	ExportPadString("######",6,"",true);
 	tstr = right(BNr.Nr1,6);
-	ExportPadString(tstr,len(tstr),"",true);//51	
+	if(ibanfound==false)then begin
+		ExportPadString(tstr,len(tstr),"",true);//51	
+	end;
 	ExportPadString("#####################",21,"",true);
 	temp = OPrw.Comment;
 	RetCharsArray(temp,res);

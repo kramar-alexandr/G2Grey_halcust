@@ -912,7 +912,7 @@ string 255 tstr,res;
 		OutString (400,0,"Старе",false);
 		OutString (5000,0,"Нове",false);
 	end else begin
-		OutString (400,0,"Старе/Нове",false);
+		OutString (370,0,"Старе/Нове",false);
 	end;
 	EndFormat;
 	black_divider(0,1);
@@ -934,14 +934,14 @@ string 255 tstr,res;
 			OutString (300,0,tstr,false);
 			if RepSpec.Media<>mtScreen then begin
 				OutString (350,0,RHr.OldCaption,false);
-				OutString (400,0,RHr.NewCaption,false);
+				OutString (370,0,RHr.NewCaption,false);
 			end else begin
 				if nonblank (RHr.OldCaption) then begin
-					OutString (400,0,RHr.OldCaption,false);
+					OutString (370,0,RHr.OldCaption,false);
 				end else begin
-					OutString (400,0," ",false);
+					OutString (370,0," ",false);
 				end;
-				OutString (400,0,RHr.NewCaption,false);
+				OutString (370,0,RHr.NewCaption,false);
 			end;
 			EndFormat;
 			gray_divider(0,1);

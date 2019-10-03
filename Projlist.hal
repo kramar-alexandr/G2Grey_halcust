@@ -93,6 +93,7 @@ record PRVc seniorPRr;
 Integer i;
 
 seniorPRr.Code=prmcode;
+	logtext(0,"FindSeniorProjects " & prmcode);
   if ReadFirstMain(seniorPRr,1,true) then begin
     cntlvl=cntlvl+1;
     seniorpr[cntlvl]=seniorPRr.Code;
@@ -126,6 +127,7 @@ row PRClassBlock PRClassrw;// Edit ************************** BPI Ukraine - Kram
   end;
   
 prcnt=prcnt+1;
+	logtext(0,"PRr.ProjType " & PRr.ProjType);
   if PRr.ProjType==0 or PRr.ProjType==3 then begin        // вывод одиночного или самого старшего проекта
     StartFormat(15);
     if mode==0 then begin                                 // на экран
@@ -151,7 +153,7 @@ prcnt=prcnt+1;
       OutString(180,0,type,false); //5
       OutString(220,0,"",false); //5
       OutString(240,0,PRr.Text0,false); //6// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 10:47:57
-      OutString(285,0,"",false); //6
+     // OutString(285,0,"",false); //6
       OutString(300,0,PRr.Name,false); // cur
     end;
     if nonblank(PRr.Leader) then begin
@@ -248,7 +250,7 @@ prcnt=prcnt+1;
       if mode==1 then begin
       OutString(285,0,seniorprn[cntlvl-5],false); //6
       end;*/
-      OutString(240,0,PRr.Text0,false);// Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 11 May 2018 11:34:40
+      OutString(240,0,PRr.Text0,false);// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 3 September 2019 18:00:43
       OutString(300,0,PRr.Name,false); // cur
       if nonblank(PRr.Leader) then begin
         OutString(430,0,PRr.Leader,false);
@@ -472,7 +474,6 @@ begin
       OutString(225,0,"Тип",false); //5
       OutString(230,0,"",false); //5
       OutString(265,0,"Текст",false); //6
-      OutString(270,0,"",false); //6
       OutString(300,0,"Найменування поточного проекту",false); // cur
       OutString(415,0,USetStr(4863),false);
       OutString(416,0,"Дата початку",false);
