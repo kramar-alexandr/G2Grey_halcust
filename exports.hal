@@ -152,7 +152,7 @@ begin
 	end;
 	ExportPadString("######",6,"",true);
 	tstr = right(BNr.Nr1,6);
-	if(ibanfound==false)then begin
+	if(currentdate<stringtodate("01/11/2019"))then begin
 		ExportPadString(tstr,len(tstr),"",true);//51	
 	end;
 	ExportPadString("#####################",21,"",true);
