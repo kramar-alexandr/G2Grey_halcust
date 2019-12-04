@@ -1,5 +1,5 @@
-external procedure TextInHeader (string,string,var string,var integer);
-external procedure OldArrayInsert(var array string, var integer, string);
+external procedure TextInHeader (string,string,var string,var integer);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:14:22
+external procedure OldArrayInsert(var array string, var integer, string);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:14:22
 external inner procedure MulVATIV(string,val,var val,var val,Integer,Integer);
 external inner procedure HTItems(string,var string);
 external inner procedure HTITs(string,string,var string);
@@ -170,7 +170,7 @@ begin
   Date mcd;
   val sum1,vatv,t1,rowsum;
   //SAV 2011_02_03 Изменение порядка столбцов Gray-11	 - для получение наименования проекта
-  record PrVc Prr; // 62
+  record PrVc Prr; // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:14:29
   BlockLoad(bascur);
   
   //Nadja
@@ -243,7 +243,9 @@ begin
 
   if (RepSpec.ArtMode == 0) or nonblank(RepSpec.FirstAcc) then begin
     StartFormat(15);
-    //SAV 2011_02_03 Изменение порядка столбцов Gray-11	 
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:14:53
+	    //SAV 2011_02_03 Изменение порядка столбцов Gray-11	 
 	 //OutString(0,0,USetStr(2682),false);
     //OutString(50,0,USetStr(2683),false);
     //OutString(120,0,USetStr(2691),false);
@@ -253,17 +255,23 @@ begin
     //end;
     //OutString(440,0,USetStr(2687),true);
 	 OutString(0,0,USetStr(2682),false);
-    OutString(50,0,USetStr(2683),false);
+
+	// Edit End ---------------------------------------------- Edit End
+	    OutString(50,0,USetStr(2683),false);
     if blank(RepSpec.AccStr) then begin
-      OutString(110,0,USetStr(4908),false);
+      OutString(110,0,USetStr(4908),false);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:15:02
     end;
-    OutString(175,0,USetStr(2684),false);
+    OutString(175,0,USetStr(2684),false);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:15:07
     OutString(440,0,USetStr(2687),true);
-	 OutString(1,0,"",true);
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:15:11
+		 OutString(1,0,"",true);
 	 OutString(25,0,USetStr(3550),false);
     OutString(125,0,USetStr(4023),false);
 	 OutString(350,0,"PO No.",false);
-    EndFormat;
+
+	// Edit End ---------------------------------------------- Edit End
+	    EndFormat;
   end;
   if ( RepSpec.ArtMode == 1 ) then begin
     StartFormat(15);
@@ -441,7 +449,9 @@ begin
         end;
         if ( RepSpec.ArtMode == 0 ) then begin
           StartFormat(15);
-			 //SAV 2011_02_03 Изменение порядка столбцов 
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:15:22
+				 //SAV 2011_02_03 Изменение порядка столбцов 
           //OutString(0,"DblQuote",QTr.SerNr,false);
           //OutDate(50,0,QTr.QTDate,false);
           //OutDate(120,0,QTr.MakeContactDate,false);
@@ -465,7 +475,9 @@ begin
 			OutString(125,0,Prr.Name,false);		
 			OutString(350,0,QTr.Comment,false);
          EndFormat;
-        end;
+
+	// Edit End ---------------------------------------------- Edit End
+	        end;
       end;
     end;
   end;
@@ -598,6 +610,10 @@ return;
 end;
 
 
+//„альше все новое
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:15:39
+	
 procedure PrintTS(record RcVc RepSpec,string user,date da1,date da2,integer mark,var val qty,integer funk,var boolean foundf)
 begin
 
@@ -1013,3 +1029,5 @@ begin
 	EndJob;
 return;
 end;
+	// Edit End ---------------------------------------------- Edit End
+	

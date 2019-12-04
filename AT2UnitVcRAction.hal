@@ -26,7 +26,7 @@ begin
   RETURN;
 END;
 
-global
+global//новая процедура
 updating function LongInt AT2UnitVcRecordUpdateAfter(var record AT2UnitVc AT2Unitr,record AT2UnitVc AT2Unit2r,LongInt stat,LongInt long4)
 BEGIN
   LongInt res;

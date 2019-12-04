@@ -1516,11 +1516,11 @@ begin
             testf = AcceptanceTasksAcceptedForAllLevels("QTVc",QTr.SerNr,bc1v,Actr,Acptr);            
             if (testf) then begin
               QTr.AcceptanceStatus = kAcceptanceStateApproved;
-              if(QTr.AcceptanceStatus==kAcceptanceStateApproved)then begin
+              if(QTr.AcceptanceStatus==kAcceptanceStateApproved)then begin//start
                 If(blank(QTr.Authority))then begin
                   QTr.Authority = CurrentUser;// Edit ************************** Monday, 8 October 2012 17:03:03
                 end;
-              end;
+              end;//--end
               RecordUpdate(oldQTr,QTr,true);
             end;
           end;

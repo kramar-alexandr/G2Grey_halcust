@@ -230,7 +230,7 @@ BEGIN
         ARr.BookRVal = 0;
         ARr.DueDate = IVr.PayDate;//CurrentDate;
 		  // Заполнение поля проект в регистре неоплаченные сч-ф
-		  ARr.PRCode = IVr.PRCode;
+		  ARr.PRCode = IVr.PRCode;// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:17:03
 		  //
         if (IVr.pdrdays==-1) then begin
           ARr.ARRebDate = ARr.DueDate;
@@ -363,7 +363,7 @@ BEGIN
       ARPayr.TAX1Sum = 0;
       ARPayr.TAX1SumBook = 0;
 		//==== заполнение поля проект
-		ARPayr.PRCode = IPrwp.PRCode;
+		ARPayr.PRCode = IPrwp.PRCode;// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:17:07
 		//====
     end;
     ARPayr.PayDate = FindARPayHistDate(IPrwp.CUPNr);
@@ -1158,6 +1158,7 @@ BEGIN
   IPr.RejectedFlag = 0;
   IPr.AuthorizationCode = "";
   IPPastePayMode(IPr);
+  //IPr.Prntdf = 0;// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:17:22
   IPr.MachineName = CurMachineName;
   IPr.DrawerCode = CurDrawerCode(IPr.MachineName);
   WarnFutureDate(true,IPr.TransDate);

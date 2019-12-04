@@ -314,7 +314,9 @@ L99:;
 return;
 end;
 
-procedure PrintIVrPayments(longint SerNr, date InvDate)
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:18:19
+	procedure PrintIVrPayments(longint SerNr, date InvDate)
 begin
   record IPVc IPr;
   row IPVc iPRw;
@@ -363,7 +365,9 @@ begin
   return;
 end;
 
-procedure PrintProjectInvoices(string prcode)
+
+	// Edit End ---------------------------------------------- Edit End
+	procedure PrintProjectInvoices(string prcode)
 begin
   record IVVc IVr;
   record ARVc ARr;
@@ -422,7 +426,9 @@ begin
       PrintIVrPayments(IVr.SerNr,IVr.InvDate);// Edit ************************** Thursday, 18 August 2016 17:19:34
     end;
   end;
-	if (totinv>0) or (totinv2>0) or (open>0) then begin //62
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:18:38
+		if (totinv>0) or (totinv2>0) or (open>0) then begin //62
 	Gray_Divider(0,1);
 	StartFormat(15);
 	OutString(0,0,USetStr(6803),false);
@@ -662,15 +668,19 @@ begin
 		end;
    end; 
   end;
-  Gray_Divider(0,1);
+
+	// Edit End ---------------------------------------------- Edit End
+	  Gray_Divider(0,1);
   StartFormat(15);
   OutString(0,0,USetStr(6803),false);
-  OutVal(350,0,totinv,M4Val,true);
-  OutVal(410,0,totinv2,M4Val,true);
-  OutVal(1,0,open2,M4Val,true);
+  OutVal(350,0,totinv,M4Val,true);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:18:45
+  OutVal(410,0,totinv2,M4Val,true);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:18:46
+  OutVal(1,0,open2,M4Val,true);// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:18:46
   EndFormat;
   return;
-end; 
+// Edit Start ---------------------------------------------- Edit Start
+	//Wednesday, 4 December 2019 10:18:53
+	end; 
 
 //============== печать платежей по заказам поставщикам
 
@@ -879,6 +889,8 @@ begin
 	return;
 end; 
 
+	// Edit End ---------------------------------------------- Edit End
+	
 procedure PrintPRQT(string prcode)
 begin
   record QTVc QTp;
@@ -1218,14 +1230,14 @@ begin
  if (RepSpec.flags[29]==1) then begin
     Black_Divider(0,1);
     PrintProjectInvoices(RepSpec.f1);
-	 StartFormat(15); // 62
-	 EndFormat; // 62
+	 StartFormat(15); // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:19:00
+	 EndFormat; // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:19:01
     PrintPRQT(RepSpec.f1);
     PrintPRActivities(RepSpec);
-	 PrintProjectOrders(RepSpec.f1); // 62
-	 PrintProjectVIs(RepSpec.f1); // 62
-	 PrintProjectPOs(RepSpec.f1); // 62
-	 PrintProjectPOsList(RepSpec.f1); // 62
+	 PrintProjectOrders(RepSpec.f1); // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:19:05
+	 PrintProjectVIs(RepSpec.f1); // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:19:06
+	 PrintProjectPOs(RepSpec.f1); // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:19:06
+	 PrintProjectPOsList(RepSpec.f1); // 62// Edit ************************** BPI Ukraine - KramarAlexandr - Wednesday, 4 December 2019 10:19:07
 	 
 	 PrintProjectIPs(RepSpec.f1);// Edit ************************** BPI Ukraine - KramarAlexandr - Monday, 12 November 2018 17:48:25
   end; 
