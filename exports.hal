@@ -154,7 +154,7 @@ begin
 	tstr = right(BNr.Nr1,6);
 	//if(currentdate<stringtodate("01/11/2019"))then begin// Edit ************************** BPI Ukraine - KramarAlexandr - Tuesday, 5 November 2019 14:44:50
 	if(true)then begin
-		ExportPadString(tstr,len(tstr),"",true);//51	
+		//ExportPadString(tstr,len(tstr),"",true);//51	//закоментировано с 13/01/2020// Edit ************************** BPI Ukraine - KramarAlexandr - 02, 14 01 2020 y. at 4:33:53 PM
 	end;
 	ExportPadString("#####################",21,"",true);
 	temp = OPrw.Comment;
