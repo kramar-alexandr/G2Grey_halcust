@@ -172,8 +172,8 @@ prcnt=prcnt+1;
       end else begin
         OutString(417,0,"-",false);
       end;*/
-      if nonblankdate(PRr.FinishedDate) then begin//        Closing Date     Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 14 February 2020 14:38:57//Mana
-      	OutDate(427,0,PRr.FinishedDate,false);
+      if nonblankdate(PRr.EndDate) then begin//        Closing Date     Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 14 February 2020 14:38:57//Mana
+      	OutDate(427,0,PRr.EndDate,false);
       end else begin
         OutString(427,0,"-",false);
       end;
@@ -271,8 +271,8 @@ prcnt=prcnt+1;
         end else begin
           OutString(417,0,"-",false);
         end;*/
-        if nonblankdate(PRr.FinishedDate) then begin
-        	OutDate(427,0,PRr.FinishedDate,false);//       Closing date         Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 14 February 2020 15:23:00
+        if nonblankdate(PRr.EndDate) then begin
+        	OutDate(427,0,PRr.EndDate,false);//       Closing date         Edit ************************** BPI Ukraine - KramarAlexandr - Friday, 14 February 2020 15:23:00
         end else begin
           OutString(427,0,"-",false);
         end;
